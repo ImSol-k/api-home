@@ -10,7 +10,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
-		registry.addMapping("/attention/**") // 경로
+		registry.addMapping("/home/**") // 경로
 				.allowedMethods("GET", "POST", "PUT", "DELETE")
 				.allowedOrigins("http://localhost:8080")
 	            .allowedHeaders("*") // 모든 요청해더
@@ -32,7 +32,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		} else {
         	System.out.println("윈도우");
         	// 파일저장디렉토리
-        	saveDir = "C:\\javastudy\\upload\\";
+        	saveDir = "C:\\javastudy\\homedeco\\upload\\";
         }
 		
 		registry.addResourceHandler("/upload/**")
