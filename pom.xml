@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.javaex</groupId>
-	<artifactId>api_home</artifactId>
+	<artifactId>api-home</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>api_home</name>
-	<description>api_home project for Spring Boot</description>
+	<name>api-home</name>
+	<description>api-home project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
