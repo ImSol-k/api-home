@@ -4,13 +4,14 @@
 <configuration>
 
 	<typeAliases>
-   </typeAliases>
+		<typeAlias alias="ManagerVoY" type="com.javaex.vo.ManagerVoY" />
+	</typeAliases>
 
-   <mappers>
-      <mapper resource="mybatis/mappers/cart.xml" />
-      <mapper resource="mybatis/mappers/managerY.xml" />
-      <mapper resource="mybatis/mappers/jw_login.xml" />
-   </mappers>
+	<mappers>
+		<mapper resource="mybatis/mappers/cart.xml" />
+		<mapper resource="mybatis/mappers/managerY.xml" />
+		<mapper resource="mybatis/mappers/jw_login.xml" />
+	</mappers>
 
 
 </configuration>
