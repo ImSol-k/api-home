@@ -12,6 +12,7 @@
 		<mapper resource="mybatis/mappers/solcart.xml" />
 		<mapper resource="mybatis/mappers/managerY.xml" />
 		<mapper resource="mybatis/mappers/jw_login.xml" />
+		<mapper resource="mybatis/mappers/ssmain.xml" />
 	</mappers>
 
 
