@@ -14,17 +14,29 @@ import com.javaex.vo.ManagerVoY;
 @RestController
 public class ManagerControllerY {
 
-   @Autowired
-   private ManagerServiceY managerServiceY;
+	@Autowired
+	private ManagerServiceY managerServiceY;
 
-   @PostMapping("/home/manager/insert")
-   public JsonResult insert(@RequestParam("files") MultipartFile[] files,
-         @RequestParam("profile") MultipartFile profileFile, @ModelAttribute ManagerVoY managerVoY) {
-      System.out.println("ManagerControllerY.insert()");
+	@PostMapping("/home/manager/insert")
+	public JsonResult insert(@RequestParam("profile") MultipartFile profileFile, @ModelAttribute ManagerVoY managerVoY, 
+						@RequestParam("files") MultipartFile[] files) {
+		System.out.println("ManagerControllerY.insert()");
+		System.out.println(files);
+		System.out.println(profileFile);
+		System.out.println(managerVoY);
+		managerServiceY.exeInsert(managerVoY, files, profileFile);
 
-      managerServiceY.exeInsert(managerVoY);
-
-      return JsonResult.success("Data inserted successfully.");
-   }
+		return JsonResult.success("");
+	}
+	
+//	@PostMapping("/home/manager/insert")
+//	public JsonResult insert(@RequestBody MultipartFile formData) {
+//		System.out.println("ManagerControllerY.insert()");
+//
+//		System.out.println(formData);
+//		//managerServiceY.exeInsert(managerVoY, files, profileFile);
+//
+//		return JsonResult.success("");
+//	}
 
 }

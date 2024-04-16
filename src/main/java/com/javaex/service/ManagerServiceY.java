@@ -4,6 +4,8 @@ import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,65 +18,68 @@ import com.javaex.vo.ManagerVoY;
 @Service
 public class ManagerServiceY {
 
-   @Autowired
-   private ManagerDaoY managerDaoY;
+	@Autowired
+	private ManagerDaoY managerDaoY;
 
-   public void exeInsert(ManagerVoY managerVoY) {
-      System.out.println("ManagerServiceY.exeInsert()");
+	public void exeInsert(ManagerVoY managerVoY) {
+		System.out.println("ManagerServiceY.exeInsert()");
 
-      int count = managerDaoY.insert(managerVoY);
-   }
-   
-   public String exeUpload(MultipartFile file) {
-      System.out.println("FoodStoreService.exeUpload()");
+		int count = managerDaoY.insert(managerVoY);
+	}
 
-      // 파일저장디렉토리
-      String saveDir = "c:\\javaStudy\\upload";
+	 // 프로필 이미지 저장 경로
+    private static String profile_save_dir = "C:\\javastudy\\homedeco\\profile\\";
 
-      // (1)파일관련 정보 추출///////////////////////////////////////////////////
+    // 추가 파일 저장 경로
+    private static String files_save_dir = "C:\\javastudy\\homedeco\\file\\";
 
-      // 오리지널 파일명
-      String orgName = file.getOriginalFilename();
-      System.out.println(orgName);
+    public String exeInsert(ManagerVoY managerVoY, MultipartFile[] files, MultipartFile profileFile) {
+        System.out.println("ManagerServiceY.exeInsert()");
 
-      // 확장자
-      String exName = orgName.substring(orgName.lastIndexOf("."));
-      System.out.println(exName);
+        // 프로필 이미지 저장
+        String profileFileName = saveFile(profileFile, profile_save_dir);
 
-      // 저장파일명(겹치지 않아야 된다)
-      String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
-      System.out.println(saveName);
+        // 추가 파일 저장
+        List<String> savedFileNames = new ArrayList<>();
+        for (MultipartFile file : files) {
+            String savedFileName = saveFile(file, files_save_dir);
+            savedFileNames.add(savedFileName);
+        }
 
-      // 파일사이즈
-      long fileSize = file.getSize();
-      System.out.println(fileSize);
+        managerDaoY.insert(managerVoY);
 
-      // 파일전체경로
-      String filePath = saveDir + "\\" + saveName;
-      System.out.println(filePath);
+        return profileFileName;
+    }
 
-      // vo로묶기
-      ManagerVoY managerVoY = new ManagerVoY();
-      managerVoY.setMain_img(saveName);
+    private String saveFile(MultipartFile file, String saveDir) {
+        String savedFileName = "";
+        try {
+            // 오리지널 파일명
+            String orgName = file.getOriginalFilename();
 
+            // 확장자
+            String exName = orgName.substring(orgName.lastIndexOf("."));
 
-      // (2)파일을 하드디스크에 저장
-      // 파일저장
-      try {
+            // 저장파일명(겹치지 않아야 됨)
+            savedFileName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
 
-         byte[] fileData = file.getBytes();
+            // 파일전체경로
+            String filePath = saveDir + "\\" + savedFileName;
 
-         OutputStream os = new FileOutputStream(filePath);
-         BufferedOutputStream bos = new BufferedOutputStream(os);
+            // 파일 저장
+            byte[] fileData = file.getBytes();
+            OutputStream os = new FileOutputStream(filePath);
+            BufferedOutputStream bos = new BufferedOutputStream(os);
+            bos.write(fileData);
+            bos.close();
 
-         bos.write(fileData);
-         bos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return savedFileName;
+    }
 
-      } catch (IOException e) {
-         e.printStackTrace();
-      }
-
-      return saveName;
-   }
-
+    
+    
+    
 }

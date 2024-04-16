@@ -15,7 +15,7 @@ public class ManagerDaoY {
    public int insert(ManagerVoY managerVoY) {
       System.out.println("ManagerDaoY.insert()");
       
-      int count = sqlSession.insert("", managerVoY);
+      int count = sqlSession.insert("managerY.insert", managerVoY);
       
       return count;
    }
