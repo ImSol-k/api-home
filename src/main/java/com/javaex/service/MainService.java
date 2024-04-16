@@ -36,6 +36,7 @@ public class MainService {
 		
 		mainDao.list(listMap);
 		
+		
 		// 전체 
 		int totalCount = mainDao.selectTotalCount(keyword);
 		
