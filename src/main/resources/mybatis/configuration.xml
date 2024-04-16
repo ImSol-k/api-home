@@ -3,9 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-   <typeAliases>
-      <typeAlias alias="ManagerVoY" type="com.javaex.vo.ManagerVoY" />
-      <typeAlias alias="Jw_Vo" type="com.javaex.vo.Jw_Vo" />
+	<typeAliases>
    </typeAliases>
 
    <mappers>
@@ -13,5 +11,6 @@
       <mapper resource="mybatis/mappers/managerY.xml" />
       <mapper resource="mybatis/mappers/jw_login.xml" />
    </mappers>
+
 
 </configuration>
