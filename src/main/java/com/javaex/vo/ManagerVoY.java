@@ -1,81 +1,73 @@
 package com.javaex.vo;
 
+import java.util.List;
+
 public class ManagerVoY {
 
-   private int product_no;
-   private String product_name;
-   private int price;
-   private String category;
-   private String main_img;
-   
-   private int img_no;
-   private String save_name;
-   
-   public ManagerVoY() {
-      super();
-   }
+	private int product_no;
+	private String product_name;
+	private int price;
+	private String category;
+	private String main_img;
 
-   public int getProduct_no() {
-      return product_no;
-   }
+	private List<ImageVo> imageList;
 
-   public void setProduct_no(int product_no) {
-      this.product_no = product_no;
-   }
+	public ManagerVoY() {
+		super();
+	}
 
-   public String getProduct_name() {
-      return product_name;
-   }
+	public int getProduct_no() {
+		return product_no;
+	}
 
-   public void setProduct_name(String product_name) {
-      this.product_name = product_name;
-   }
+	public void setProduct_no(int product_no) {
+		this.product_no = product_no;
+	}
 
-   public int getPrice() {
-      return price;
-   }
+	public String getProduct_name() {
+		return product_name;
+	}
 
-   public void setPrice(int price) {
-      this.price = price;
-   }
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
+	}
 
-   public String getCategory() {
-      return category;
-   }
+	public int getPrice() {
+		return price;
+	}
 
-   public void setCategory(String category) {
-      this.category = category;
-   }
+	public void setPrice(int price) {
+		this.price = price;
+	}
 
-   public String getMain_img() {
-      return main_img;
-   }
+	public String getCategory() {
+		return category;
+	}
 
-   public void setMain_img(String main_img) {
-      this.main_img = main_img;
-   }
+	public void setCategory(String category) {
+		this.category = category;
+	}
 
-   public int getImg_no() {
-      return img_no;
-   }
+	public String getMain_img() {
+		return main_img;
+	}
 
-   public void setImg_no(int img_no) {
-      this.img_no = img_no;
-   }
+	public void setMain_img(String main_img) {
+		this.main_img = main_img;
+	}
 
-   public String getSave_name() {
-      return save_name;
-   }
+	public List<ImageVo> getImageList() {
+		return imageList;
+	}
 
-   public void setSave_name(String save_name) {
-      this.save_name = save_name;
-   }
+	public void setImageList(List<ImageVo> imageList) {
+		this.imageList = imageList;
+	}
 
-   @Override
-   public String toString() {
-      return "ManagerVoY [product_no=" + product_no + ", product_name=" + product_name + ", price=" + price
-            + ", category=" + category + ", main_img=" + main_img + ", img_no=" + img_no + ", save_name="
-            + save_name + "]";
-   }
-   
+	@Override
+	public String toString() {
+		return "ManagerVoY [product_no=" + product_no + ", product_name=" + product_name + ", price=" + price
+				+ ", category=" + category + ", main_img=" + main_img + ", imageList=" + imageList + "]";
+	}
+
 }
