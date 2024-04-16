@@ -3,11 +3,13 @@
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-	<typeAliases>
-	</typeAliases>
-	
-	<mappers>
-		<mapper resource="mybatis/mappers/cart.xml" />
-	</mappers>
-	
+   <typeAliases>
+      <typeAlias alias="ManagerVoY" type="com.javaex.vo.ManagerVoY" />
+   </typeAliases>
+
+   <mappers>
+      <mapper resource="mybatis/mappers/cart.xml" />
+      <mapper resource="mybatis/mappers/managerY.xml" />
+   </mappers>
+
 </configuration>
