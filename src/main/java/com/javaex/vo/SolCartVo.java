@@ -68,11 +68,14 @@ public class SolCartVo {
 		this.price = price;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "SolCartVo [cart=" + cart + ", product=" + product + ", user=" + user + ", color=" + color + ", count="
 				+ count + ", userNo=" + userNo + ", price=" + price + "]";
 	}
+
+	
 
 	
 
