@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.javaex.service.ManagerServiceY;
@@ -27,7 +27,6 @@ public class ManagerControllerY {
 		System.out.println("ManagerControllerY.insert()");
 
 		System.out.println(managerVoY);
-		// System.out.println(managerVoY.getContentFiles().size());
 
 		managerServiceY.exeInsert(managerVoY);
 		managerServiceY.exeInsert02(managerVoY);
@@ -38,13 +37,16 @@ public class ManagerControllerY {
 	
 	// 리스트 띄우기
 	@GetMapping("/home/manager/list")
-	public JsonResult list() {
-		System.out.println("ManagerControllerY.list()");
+	public JsonResult list(@RequestParam(name = "sortType") String sortType) {
+	    System.out.println("ManagerControllerY.list()");
 
-		List<ManagerVoY> productList = managerServiceY.exeList();
+	    List<ManagerVoY> productList = managerServiceY.exeList(sortType);
 
-		return JsonResult.success(productList);
+	    System.out.println(sortType);
+	    System.out.println(productList);
+	    return JsonResult.success(productList);
 	}
+
 
 	
 	// 상품 삭제
@@ -55,6 +57,16 @@ public class ManagerControllerY {
 		int count = managerServiceY.exeRemove(no);
 
 		return JsonResult.success("야호");
+	}
+	
+	//카테고리별 상품리스트
+	@PostMapping("/home/manager/categorylist")
+	public JsonResult categoryList(@RequestParam String category) {
+		System.out.println("GuestbookController.categoryList: "+category);
+		
+		List<ManagerVoY> categoryList = managerServiceY.exeCateList(category);
+		
+		return JsonResult.success(categoryList);
 	}
 	
 }

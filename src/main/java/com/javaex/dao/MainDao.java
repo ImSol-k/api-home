@@ -22,6 +22,16 @@ public class MainDao {
 		return list;
 	}
 	
+	//
+	public List<MainVo> listNoCategory() {
+		List<MainVo> list = sqlSession.selectList("ssmain.listNoCategory");
+		return list;
+	}
+	public List<MainVo> listCategory(String keyword) {
+		List<MainVo> list = sqlSession.selectList("ssmain.listCategory",keyword);
+		return list;
+	}
+	
 
 
 }

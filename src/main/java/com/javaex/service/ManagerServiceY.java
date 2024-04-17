@@ -128,10 +128,10 @@ public class ManagerServiceY {
         return savedFileNames; // 저장된 파일 이름들을 반환
     }
 
-	public List<ManagerVoY> exeList() {
+	public List<ManagerVoY> exeList(String sortType) {
 		System.out.println("ManagerServiceY.exeList()");	
 		
-		List<ManagerVoY> productList = managerDaoY.selectList();
+		List<ManagerVoY> productList = managerDaoY.selectList(sortType);
 		
 		return productList;
 	}
@@ -144,6 +144,14 @@ public class ManagerServiceY {
 		managerDaoY.delete02(no);
 		
 		return count;
+	}
+	
+	public List<ManagerVoY> exeCateList(String category){
+		System.out.println("ManagerServiceY.exeCateList");
+		
+		List<ManagerVoY> categoryList = managerDaoY.selectCategoryList(category);
+		
+		return categoryList;
 	}
 
 }

@@ -37,13 +37,32 @@ public class ManagerDaoY {
 		}
 	}
 
-	public List<ManagerVoY> selectList() {
+	public List<ManagerVoY> selectList(String sortType) {
 		System.out.println("ManagerDaoY.SelectList()");
 		
-		List<ManagerVoY> productList = sqlSession.selectList("managerY.selectNew");
-		
+		 String sql = "";
+		    
+		    if ("recent".equals(sortType)) {
+		    	sql = "managerY.selectNew";
+		    } else if ("review".equals(sortType)) {
+		    	sql = "managerY.selectReview";
+		    } else if ("rating".equals(sortType)) {
+		    	sql = "managerY.selectStar";
+		    } else {
+		    	sql = "managerY.selectNew";
+		    }
+		    
+		    List<ManagerVoY> productList = sqlSession.selectList(sql);
 
 		return productList;
+	}
+	
+	public List<ManagerVoY> selectCategoryList(String category){
+		System.out.println("ManagerDaoY.selectCategoryList");
+		
+		List<ManagerVoY> categoryList = sqlSession.selectList("managerY.categoryList", category);
+		
+		return categoryList;
 	}
 
 	public int delete(int no) {
@@ -58,6 +77,8 @@ public class ManagerDaoY {
 		System.out.println("ManagerDaoY.delete02()");
 		sqlSession.delete("managerY.delete", no);
 	}
+	
+
 	
 	
 }

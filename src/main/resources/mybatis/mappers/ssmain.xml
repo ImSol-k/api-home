@@ -33,6 +33,43 @@
 		]]>
 	</select>
  	
+ 	<!-- 카테고리없이 -->
+ 	<select id="listNoCategory" resultType="com.javaex.vo.MainVo">
+ 		<![CDATA[
+ 			select	p.product_no productNo,
+					p.main_img mainImg, 
+			        p.category,
+			        p.product_name ,
+			        r.star star,
+			        p.price
+			from product p 
+			left join (select	product_no,
+								avg(star) star
+						from reviews
+						group by product_no) r
+					on p.product_no = r.product_no
+			where category = 'bed'
+			order by p.product_no desc
+ 		]]>
+ 	</select>
  	
+ 	<select id="listCategory" parameterType="String" resultType="com.javaex.vo.MainVo">
+ 		<![CDATA[
+ 		select	p.product_no productNo,
+				p.main_img mainImg, 
+		        p.category,
+		        p.product_name ,
+		        r.star star,
+		        p.price
+		from product p 
+		left join (select	product_no,
+							avg(star) star
+					from reviews
+					group by product_no) r
+				on p.product_no = r.product_no
+		where category = #{keyword}
+		order by p.product_no desc
+ 		]]>
+ 	</select>
    
 </mapper>
