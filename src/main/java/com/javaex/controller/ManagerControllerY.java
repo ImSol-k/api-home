@@ -54,4 +54,5 @@ public class ManagerControllerY {
 
 		return JsonResult.success("야호");
 	}
+	
 }
