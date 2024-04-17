@@ -1,6 +1,7 @@
 package com.javaex.dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -34,5 +35,14 @@ public class ManagerDaoY {
 			paramMap.put("saveName", saveName);
 			sqlSession.insert("managerY.insertImg", paramMap);
 		}
+	}
+
+	public List<ManagerVoY> selectList() {
+		System.out.println("ManagerDaoY.SelectList()");
+		
+		List<ManagerVoY> productList = sqlSession.selectList("managerY.selectNew");
+		
+
+		return productList;
 	}
 }
