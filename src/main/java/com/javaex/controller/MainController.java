@@ -1,11 +1,15 @@
 package com.javaex.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.javaex.service.MainService;
+import com.javaex.util.JsonResult;
+import com.javaex.vo.MainVo;
 
 @RestController
 public class MainController {
@@ -15,10 +19,16 @@ public class MainController {
 	
 	// 리스트 가져오기 - 검색 페이징 포함
 	@GetMapping("/home/main")
-	public void main(@RequestParam(value="page",required = false,defaultValue="1") int page , 
+	public JsonResult main(@RequestParam(value="page",required = false,defaultValue="1") int page , 
 			@RequestParam(value="keyword",required=false,defaultValue="") String keyword) {
-//		System.out.println("con>main");
-		mainService.exeList(page,keyword);
+		List<MainVo> list = mainService.exeList(page,keyword);
+		System.out.println(list);
+		System.out.println("con:"+page);
+		if(list != null) {
+			return JsonResult.success(list);
+		} else {
+			return JsonResult.fail("더 이상 불러올 데이터가 없습니다.");
+		}
 	}
 
 }
