@@ -59,4 +59,10 @@ public class SolInfoDao {
 		System.out.println(cartList);
 		return cartList;
 	}
+	//카트 업데이트
+	public int updateCart(SolCartVo cartVo) {
+		System.out.println("SolInfoDao.updateCart");
+		int count = sqlSession.update("solinfo.cartUpdate", cartVo);
+		return count;
+	}
 }

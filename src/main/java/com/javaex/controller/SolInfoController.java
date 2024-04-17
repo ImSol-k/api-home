@@ -97,8 +97,13 @@ public class SolInfoController {
 	@PostMapping("cartupdate")
 	public JsonResult cartUpdate(@RequestBody SolCartVo cartVo) {
 		System.out.println("SolInfoController.cartUpdate");
-		System.out.println(cartVo);
-		return null;
+//		System.out.println(cartVo);
+		int count = infoService.exeCartUpdate(cartVo);
+		if(count > 0) {
+			return JsonResult.success("장바구니추가");
+		} else {
+			return JsonResult.fail("추가실패");
+		}
 	}
 
 }
