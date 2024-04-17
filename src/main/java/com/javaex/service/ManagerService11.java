@@ -18,7 +18,7 @@ public class ManagerService11 {
 	
 	
 	//주문현황가져오기
-	public void list() {
+	public Map<String, Object> list() {
 		
 		//배송진행중 가져오기
 		List<StateVo> ing = md.list();
@@ -32,33 +32,47 @@ public class ManagerService11 {
 		stateMap.put("end", end);
 		
 		System.out.println(stateMap);
+		
+		return stateMap;
 	}
 	
-	public void datas() {
+	public Map<String, Integer> datas() {
 		
 		//누적 판매금액 가져오기
-		md.cPrice();
+		int cprice = md.cPrice();
 		
 		//금일 판매금액
-		md.tPrice();
+		int tprice = md.tPrice();
 		
 		//누적판매량
-		md.cCount();
+		int ccount = md.cCount();
 		
 		//금일판매량
-		md.tCount();
+		int tcount = md.tCount();
 		
 		//침대판매수
-		md.bedCount();
+		int bedcount = md.bedCount();
 		
 		//쇼파판매수
-		md.shopaCount();
+		int shopacount = md.shopaCount();
 		
 		//테이블판매수
-		md.tableCount();
+		int tablecount = md.tableCount();
 		
 		//옷장판매수
-		md.hangerCount();
+		int hangercount = md.hangerCount();
 		
+		Map<String, Integer> datas = new HashMap<>();
+		
+		datas.put("cprice", cprice);
+		datas.put("tprice", tprice);
+		datas.put("ccount", ccount);
+		datas.put("tcount", tcount);
+		datas.put("bedcount", bedcount);
+		datas.put("shopacount", shopacount);
+		datas.put("tablecount", tablecount);
+		datas.put("hangercount", hangercount);
+		
+		return datas;
 	}
 }
