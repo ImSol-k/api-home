@@ -1,7 +1,118 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="managerj">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="manager11">
+	<!-- 쿼리문작성 -->
+	<select id="stateList" resultType="com.javaex.vo.StateVo">
+		select product_name
+		productName,
+		count,
+		price,
+		nick_name nickName,
+		color,
+		main_img mainImage,
+		state
+		from orderlist, colors, product, orders, users
+		where
+		orderlist.color_no
+		= colors.no
+		and orderlist.product_no =
+		product.product_no
+		and
+		orderlist.order_no = orders.order_no
+		and
+		orders.user_no = users.user_no
+		and state = 'ing'
+	</select>
 
-	
+	<select id="stateList2" resultType="com.javaex.vo.StateVo">
+		select product_name
+		productName,
+		count,
+		price,
+		nick_name nickName,
+		color,
+		main_img mainImage,
+		state
+		from orderlist, colors, product, orders, users
+		where
+		orderlist.color_no
+		= colors.no
+		and orderlist.product_no =
+		product.product_no
+		and
+		orderlist.order_no = orders.order_no
+		and
+		orders.user_no = users.user_no
+		and state = 'end'
+	</select>
+
+	<select id="cprice" resultType="int">
+		select if(sum(price*count) is null, 0, sum(price*count))
+		from
+		product, orderlist
+		where product.product_no = orderlist.product_no
+	</select>
+
+	<select id="tprice" resultType="int">
+		select if(sum(price*count) is null, 0, sum(price*count))
+		from
+		product, orderlist, orders
+		where product.product_no =
+		orderlist.product_no
+		and orderlist.order_no = orders.order_no
+		and
+		orders.order_date = date(now())
+	</select>
+
+	<select id="ccount" resultType="int">
+		select if(sum(count) is null, 0, sum(count))
+		from product,
+		orderlist
+		where product.product_no = orderlist.product_no
+	</select>
+
+	<select id="tcount" resultType="int">
+		select if(sum(count) is null, 0, sum(count))
+		from product,
+		orderlist, orders
+		where product.product_no = orderlist.product_no
+		and
+		orderlist.order_no = orders.order_no
+		and orders.order_date =
+		date(now())
+	</select>
+
+	<select id="bedcount" resultType="int">
+		select if(sum(count) is null, 0, sum(count))
+		from product,
+		orderlist
+		where product.product_no = orderlist.product_no
+		and (category
+		= '침대' or category = '매트리스' or category = '침대 프레임')
+	</select>
+
+	<select id="shopacount" resultType="int">
+		select if(sum(count) is null, 0, sum(count))
+		from
+		product, orderlist
+		where product.product_no = orderlist.product_no
+		and
+		(category = '일반 쇼파' or category = '좌식 쇼파' or category = '1인용 쇼파')
+	</select>
+
+	<select id="tablecount" resultType="int">
+		select if(sum(count) is null, 0, sum(count))
+		from
+		product, orderlist
+		where product.product_no = orderlist.product_no
+		and
+		(category = '식탁' or category = '사이드 테이블')
+	</select>
+
+	<select id="hangercount" resultType="int">
+		select if(sum(count) is null, 0, sum(count))
+		from product, orderlist
+		where product.product_no = orderlist.product_no
+		and (category = '옷장' or category = '행거' or category = '붙박이장')
+	</select>
 </mapper>

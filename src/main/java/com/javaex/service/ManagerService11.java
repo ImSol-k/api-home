@@ -36,6 +36,28 @@ public class ManagerService11 {
 	
 	public void datas() {
 		
+		//누적 판매금액 가져오기
 		md.cPrice();
+		
+		//금일 판매금액
+		md.tPrice();
+		
+		//누적판매량
+		md.cCount();
+		
+		//금일판매량
+		md.tCount();
+		
+		//침대판매수
+		md.bedCount();
+		
+		//쇼파판매수
+		md.shopaCount();
+		
+		//테이블판매수
+		md.tableCount();
+		
+		//옷장판매수
+		md.hangerCount();
 	}
 }
