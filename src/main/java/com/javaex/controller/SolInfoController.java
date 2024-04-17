@@ -96,6 +96,7 @@ public class SolInfoController {
 	@PostMapping("cartupdate")
 	public JsonResult cartUpdate() {
 		System.out.println("SolInfoController.cartUpdate");
+		
 		return null;
 	}
 
