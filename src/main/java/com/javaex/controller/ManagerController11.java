@@ -1,5 +1,7 @@
 package com.javaex.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,15 +15,14 @@ public class ManagerController11 {
 	private ManagerService11 ms;
 	
 	@GetMapping("/home/manager/state")
-	public void list() {
+	public Map<String, Object> list() {
 		
-		ms.list();
+		return ms.list();
 	}
 	
 	@GetMapping("/home/manager/datas")
-	public void datas() {
-		System.out.println("데이터 뽑아오기");
+	public Map<String, Integer> datas() {
 		
-		ms.datas();
+		return ms.datas();
 	}
 }
