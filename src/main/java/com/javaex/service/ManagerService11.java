@@ -59,5 +59,6 @@ public class ManagerService11 {
 		
 		//옷장판매수
 		md.hangerCount();
+		
 	}
 }
