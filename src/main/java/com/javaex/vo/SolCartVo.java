@@ -7,6 +7,7 @@ public class SolCartVo {
 	private String user;
 	private String color;
 	private int count;
+	private int userNo;
 	
 	public SolCartVo() {
 		super();
@@ -53,7 +54,12 @@ public class SolCartVo {
 	public void setCount(int count) {
 		this.count = count;
 	}
-	
+	public int getUserNo() {
+		return userNo;
+	}
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
+	}
 
 	@Override
 	public String toString() {
