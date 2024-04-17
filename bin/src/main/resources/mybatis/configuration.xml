@@ -5,12 +5,17 @@
 
 	<typeAliases>
 		<typeAlias alias="ManagerVoY" type="com.javaex.vo.ManagerVoY" />
+		<typeAlias alias="SolCartVo" type="com.javaex.vo.SolCartVo" />
+		<typeAlias alias="productVo" type="com.javaex.vo.SolProductVo" />
+		<typeAlias alias="productImgVo" type="com.javaex.vo.ImageVo" />
+		<typeAlias alias="reviewVo" type="com.javaex.vo.SolReviewVo" />
 	</typeAliases>
 
 	<mappers>
-		<mapper resource="mybatis/mappers/cart.xml" />
+		<mapper resource="mybatis/mappers/solinfo.xml" />
 		<mapper resource="mybatis/mappers/managerY.xml" />
 		<mapper resource="mybatis/mappers/jw_login.xml" />
+		<mapper resource="mybatis/mappers/ssmain.xml" />
 	</mappers>
 
 
