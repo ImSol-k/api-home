@@ -20,10 +20,8 @@
 	<!-- 리뷰 -->
 	<select id="selectReview" resultType="reviewVo" parameterType="int">
 	<![CDATA[
-		select reg_date regDate, r.user_no userNo, content, star, img_name imgName, id
-		from reviews r, users u 
-		where product_no = #{productNo}
-		and r.user_no = u.user_no
+		select reg_date regDate, content, star, img_name imgName 
+		from reviews where product_no = #{productNo}
 	]]>
 	</select>
 	
@@ -47,17 +45,5 @@
 	     	where color = #{color}), #{count})
 	]]>
 	</insert>
-	
-	<!-- 유저 장바구니 불러오기 -->
-	<select id="userCartSelect">
-	<![CDATA[
-		select u.id, p.product_name productName, r.color, count
-		from carts c, product p, users u, colors r
-		where c.product_no = p.product_no
-		and c.user_no = u.user_no
-		and u.user_no = #{userNo}
-		and c.color_no = r.no
-	]]>
-	</select>
 	
 </mapper>

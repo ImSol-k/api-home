@@ -24,6 +24,11 @@ public class SolInfoController {
 	@Autowired
 	private SolInfoService infoService;
 
+	/*******************************
+	 * ProductInfo Contorller
+	 * @param cartList
+	 * @return
+	 */
 	@PostMapping("add")
 	public JsonResult addCart(@RequestBody List<SolCartVo> cartList) {
 		System.out.println("SolInfoController.addCart");
@@ -70,6 +75,17 @@ public class SolInfoController {
 		System.out.println(file+"/"+star+"/"+content);
 		
 		infoService.exeSetReview(file, new SolReviewVo(star, content, userNo, pNo));
+		return null;
+	}
+	
+	/*******************************
+	 * Cart Contorller
+	 * @param cartList
+	 * @return
+	 */
+	@PostMapping("usercart")
+	public JsonResult cartList(@RequestParam("userNo") int userNo) {
+		System.out.println("SolInfoController.cartList");
 		return null;
 	}
 
