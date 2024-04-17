@@ -11,11 +11,28 @@ public class ManagerVoY {
 	private int price;
 	private String category;
 	private MultipartFile profile;
+	private String main_img;
 
 	private List<MultipartFile> contentFiles;
+	private List<String> contentImg;
 
 	public ManagerVoY() {
 		super();
+	}
+	
+	public List<String> getContentImg() {
+		return contentImg;
+	}
+
+	public void setContentImg(List<String> contentImg) {
+		this.contentImg = contentImg;
+	}
+
+	public String getMain_img() {
+		return main_img;
+	}
+	public void setMain_img(String main_img) {
+		this.main_img = main_img;
 	}
 
 	public int getProduct_no() {
@@ -58,8 +75,6 @@ public class ManagerVoY {
 		this.profile = profile;
 	}
 
-	
-
 	public List<MultipartFile> getContentFiles() {
 		return contentFiles;
 	}
@@ -71,11 +86,11 @@ public class ManagerVoY {
 	@Override
 	public String toString() {
 		return "ManagerVoY [product_no=" + product_no + ", title=" + title + ", price=" + price + ", category="
-				+ category + ", profile=" + profile + ", contentFiles=" + contentFiles + "]";
+				+ category + ", profile=" + profile + ", main_img=" + main_img + ", contentFiles=" + contentFiles
+				+ ", contentImg=" + contentImg + "]";
 	}
-
 	
-
+	
 	
 
 }
