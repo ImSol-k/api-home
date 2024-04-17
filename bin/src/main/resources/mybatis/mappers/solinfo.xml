@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="solinfo">
+
+	<!-- 상품정보 불러오기 -->
+	<select id="selectProduct" resultType="productVo" parameterType="int">
+	<![CDATA[
+		select product_name productName, price, category, main_img mainImg
+		from product where product_no = #{productNo}
+	]]>
+	</select>
+	<!-- 상품정보 이미지 -->
+	<select id="selectProductImg" resultType="string" parameterType="int">
+	<![CDATA[
+		select save_name 
+		from images where product_no = #{productNo}
+	]]>
+	</select>
+	<!-- 리뷰 -->
+	<select id="selectReview" resultType="reviewVo" parameterType="int">
+	<![CDATA[
+		select reg_date regDate, content, star, img_name imgName 
+		from reviews where product_no = #{productNo}
+	]]>
+	</select>
+	
+	<!-- 리뷰추가 -->
+	<insert id="reviewInsert" parameterType="reviewVo">
+	<![CDATA[
+		insert reviews 
+		values(null, #{userNo}, now(), #{content}, #{star}, null, #{productNo})
+	]]>
+	</insert>
+
+	<!-- 장바구니 추가 -->
+	<insert id="insertCart" parameterType="SolCartVo">
+	<![CDATA[
+		insert carts values
+		(null, (select product_no from product
+				where product_name = #{product}), 
+	    	   (select user_no from users
+				where id = #{user}), 
+		   	   (select no from colors
+	     	where color = #{color}), #{count})
+	]]>
+	</insert>
+	
+</mapper>
