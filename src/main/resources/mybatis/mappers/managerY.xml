@@ -25,41 +25,6 @@
 	</insert>
 	<!-- 상품 등록 -->
 
-	<!-- 상품 리스트 최신순 -->
-	<select id="selectNew" parameterType="ProductListVo">
-      <![CDATA[   
-        select p.product_no, p.main_img, p.product_name, avg(r.star) as avg_star, COUNT(r.product_no) AS review_count
-		from product p
-		left join reviews r on p.product_no = r.product_no
-		group by p.product_no
-		order BY review_count DESC;
-        ]]>
-	</select>
-	<!-- 상품 리스트 최신순 -->
 	
-	<!-- 상품 리스트 리뷰순 -->
-	<select id="selectReview" parameterType="ProductListVo">
-      <![CDATA[   
-        select p.product_no, p.main_img, p.product_name, avg(r.star) as avg_star, count(r.product_no) as review_count
-		from product p
-		left join reviews r on p.product_no = r.product_no
-		group by p.product_no
-		order by review_count desc;
-        ]]>
-	</select>
-	<!-- 상품 리스트 리뷰순 -->
-	
-	<!-- 상품 리스트 별점순 -->
-	<select id="selectStar" parameterType="ProductListVo">
-      <![CDATA[   
-        select p.product_no, p.main_img, p.product_name, avg(r.star) as avg_star
-		from product p
-		left join reviews r on p.product_no = r.product_no
-		group by p.product_no
-		order by avg_star desc;
-        ]]>
-	</select>
-	<!-- 상품 리스트 별점순 -->
-
 </mapper>
 
