@@ -1,5 +1,9 @@
 package com.javaex.service;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 import java.util.UUID;
 
@@ -46,36 +50,35 @@ public class SolInfoService {
 	}
 
 	// 리뷰작성
-	public int exeSetReview(MultipartFile file, SolReviewVo reviewVo) {
+	public SolReviewVo exeSetReview(MultipartFile file, SolReviewVo reviewVo) {
 		System.out.println("SolInfoService.exeSetReview()");
 
-		// 운영 체제 이름 확인
-		String osName = System.getProperty("os.name").toLowerCase();
-		String saveDir;
-		// 운영 체제에 따라 다른 경로 설정
-		if (osName.contains("linux")) {
-			System.out.println("리눅스");
-			// 파일저장디렉토리
-			saveDir = "/app/upload/"; // Linux 경로. username을 실제 사용자 이름으로 변경하세요.
-		} else {
-			System.out.println("윈도우");
-			// 파일저장디렉토리
-			saveDir = ".\\uploadImages\\";
-		}
+		String saveDir = ".\\uploadImages\\";
 
 		// 파일 정보수집
 		String orgName = file.getOriginalFilename();
 		String exeName = orgName.substring(orgName.lastIndexOf("."));
 		String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exeName;
-		System.out.println("saveName: " + saveName);
+//		System.out.println("saveName: " + saveName);
+		String filePath = saveDir + "\\" + saveName;
 		reviewVo.setImgName(saveName);
-		infoDao.insertReview(reviewVo);
-
-		return 0;
+		System.out.println(reviewVo);
+		int count = infoDao.insertReview(reviewVo);
+		reviewVo.setReviewNo(count);
+		try {
+			byte[] fileData = file.getBytes();
+			OutputStream os = new FileOutputStream(filePath);
+			BufferedOutputStream bos = new BufferedOutputStream(os);
+			bos.write(fileData);
+			bos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return reviewVo;
 	}
-	
-	//카트리스트
-	public List<SolCartVo> exeCartList(int userNo){
+
+	// 카트리스트
+	public List<SolCartVo> exeCartList(int userNo) {
 		System.out.println("SolInfoService.exeCartList");
 		List<SolCartVo> cartList = infoDao.selectCart(userNo);
 		return cartList;

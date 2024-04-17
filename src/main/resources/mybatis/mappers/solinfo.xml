@@ -31,8 +31,11 @@
 	<insert id="reviewInsert" parameterType="reviewVo">
 	<![CDATA[
 		insert reviews 
-		values(null, #{userNo}, now(), #{content}, #{star}, null, #{productNo})
+		values(null, #{userNo}, now(), #{content}, #{star}, #{imgName}, #{productNo})
 	]]>
+	<selectKey keyProperty="reviewNo" resultType="int" order="AFTER">
+		select last_insert_id()
+	</selectKey>
 	</insert>
 
 	<!-- 장바구니 추가 -->

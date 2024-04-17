@@ -74,8 +74,8 @@ public class SolInfoController {
 		System.out.println("SolInfoController.reviewWrite"+userNo);
 		System.out.println(file+"/"+star+"/"+content);
 		
-		infoService.exeSetReview(file, new SolReviewVo(star, content, userNo, pNo));
-		return null;
+		SolReviewVo reviewVo = infoService.exeSetReview(file, new SolReviewVo(star, content, userNo, pNo));
+		return JsonResult.success(reviewVo);
 	}
 	
 	/*******************************
@@ -92,6 +92,11 @@ public class SolInfoController {
 		} else {
 			return JsonResult.fail("장바구니비어있음");
 		}
+	}
+	@PostMapping("cartupdate")
+	public JsonResult cartUpdate() {
+		System.out.println("SolInfoController.cartUpdate");
+		return null;
 	}
 
 }
