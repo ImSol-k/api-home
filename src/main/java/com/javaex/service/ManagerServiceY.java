@@ -135,6 +135,7 @@ public class ManagerServiceY {
 		
 		return productList;
 	}
+	
 
 	public int exeRemove(int no) {
 		System.out.println("ManagerServiceY.exeRemove()");

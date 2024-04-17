@@ -35,6 +35,7 @@ public class ManagerControllerY {
 		return JsonResult.success("성공야호");
 	}
 
+	
 	// 리스트 띄우기
 	@GetMapping("/home/manager/list")
 	public JsonResult list() {
@@ -45,6 +46,7 @@ public class ManagerControllerY {
 		return JsonResult.success(productList);
 	}
 
+	
 	// 상품 삭제
 	@DeleteMapping(value = "/home/manager/delete/{no}")
 	public JsonResult remove(@PathVariable(value = "no") int no) {
