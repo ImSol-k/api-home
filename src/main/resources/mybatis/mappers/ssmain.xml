@@ -5,7 +5,33 @@
 
 	<!-- <![CDATA[]]> -->
 	
-	<!-- 리스트가져오기 -->
+	
+	<!-- 키워드를 포함한 전체 리스트 가져오기 -->
+	<select id="list" parameterType="map" resultType="com.javaex.vo.MainVo">
+		<![CDATA[
+			select	p.product_no productNo,
+					p.main_img mainImg, 
+			        p.category,
+			        p.product_name productName,
+			        r.star star,
+			        p.price
+			from product p 
+			left join (select	product_no,
+								avg(star) star
+						from reviews
+						group by product_no) r
+					on p.product_no = r.product_no
+		]]>
+		<if test="keyword != null">
+		<![CDATA[
+			where p.product_name like concat('%',#{keyword},'%')
+		]]>
+		</if>
+		<![CDATA[
+			order by p.product_no desc
+			limit #{startRowNo}, #{listCount}
+		]]>
+	</select>
  	
    
 </mapper>

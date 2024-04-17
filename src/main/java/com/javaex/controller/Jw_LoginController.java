@@ -16,21 +16,20 @@ import jakarta.servlet.http.HttpServletResponse;
 @RestController
 public class Jw_LoginController {
 
-    @Autowired
-    private Jw_LoginService jw_LoginService;
+	@Autowired
+	private Jw_LoginService jw_LoginService;
 
-    @PostMapping("/home/login")
-    public JsonResult login(@RequestBody Jw_Vo jw_Vo, HttpServletResponse response) {
-    	System.out.println("Jw_LoginController");
-    	
-    	
-        Jw_Vo user = jw_LoginService.exelogin(jw_Vo.getId(), jw_Vo.getPassword());
+	@PostMapping("/home/login")
+	public JsonResult login(@RequestBody Jw_Vo jw_Vo, HttpServletResponse response) {
+		System.out.println("Jw_LoginController");
 
-        if (user != null) {
-            JwtUtil.createTokenAndSetHeader(response, ""+user.getUserNo());
-            return JsonResult.success(user);
-        } else {
-            return JsonResult.fail("로그인 실패");
-        }
-    }
+		Jw_Vo user = jw_LoginService.exelogin(jw_Vo.getId(), jw_Vo.getPassword());
+
+		if (user != null) {
+			JwtUtil.createTokenAndSetHeader(response, "" + user.getUserNo());
+			return JsonResult.success(user);
+		} else {
+			return JsonResult.fail("로그인 실패");
+		}
+	}
 }
