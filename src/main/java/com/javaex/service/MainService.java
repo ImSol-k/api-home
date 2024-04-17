@@ -33,14 +33,31 @@ public class MainService {
 		listMap.put("keyword", keyword);
 		
 		List<MainVo> list = mainDao.list(listMap);
-		System.out.println(list);
 		if (!list.isEmpty()) {
 			return list;
 		} else {
 			return null;
-		}
+		}		
 	}
 	
+	// 카테고리 기본
+	public List<MainVo> exeNoCategory() {
+		List<MainVo> list = mainDao.listNoCategory();
+		if (!list.isEmpty()) {
+			return list;
+		} else {
+			return null;
+		}		
+	}
+	
+	public List<MainVo> exeCatogery(String keyword) {
+		List<MainVo> list = mainDao.listCategory(keyword);
+		if (!list.isEmpty()) {
+			return list;
+		} else {
+			return null;
+		}		
+	}
 
 	
 	
