@@ -102,8 +102,5 @@ public class ManagerVoY {
 				+ category + ", profile=" + profile + ", main_img=" + main_img + ", contentFiles=" + contentFiles
 				+ ", contentImg=" + contentImg + ", avg_star=" + avg_star + "]";
 	}
-	
-	
-	
 
 }

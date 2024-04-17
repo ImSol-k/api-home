@@ -45,4 +45,19 @@ public class ManagerDaoY {
 
 		return productList;
 	}
+
+	public int delete(int no) {
+		System.out.println("ManagerDaoY.delete()");
+		
+		int count = sqlSession.delete("managerY.deleteImg", no);
+		
+		return count;
+	}
+
+	public void delete02(int no) {
+		System.out.println("ManagerDaoY.delete02()");
+		sqlSession.delete("managerY.delete", no);
+	}
+	
+	
 }

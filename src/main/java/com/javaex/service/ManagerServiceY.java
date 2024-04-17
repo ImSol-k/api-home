@@ -136,4 +136,13 @@ public class ManagerServiceY {
 		return productList;
 	}
 
+	public int exeRemove(int no) {
+		System.out.println("ManagerServiceY.exeRemove()");
+
+		int count = managerDaoY.delete(no);
+		managerDaoY.delete02(no);
+		
+		return count;
+	}
+
 }

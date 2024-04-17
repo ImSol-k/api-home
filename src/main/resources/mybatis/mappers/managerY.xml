@@ -61,6 +61,19 @@
 	</select>
 	<!-- 상품 리스트 별점순 -->
 
+	<!-- 상품 삭제 -->
+	<delete id="deleteImg" parameterType="int">
+      <![CDATA[   
+        delete from images where product_no=#{product_no}
+
+        ]]>
+	</delete>
 	
+	<delete id="delete" parameterType="int">
+      <![CDATA[   
+        delete from product where product_no=#{product_no}
+        ]]>
+	</delete>
+	<!-- 상품 삭제 -->
 </mapper>
 
