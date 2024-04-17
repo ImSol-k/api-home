@@ -20,8 +20,10 @@
 	<!-- 리뷰 -->
 	<select id="selectReview" resultType="reviewVo" parameterType="int">
 	<![CDATA[
-		select reg_date regDate, content, star, img_name imgName 
-		from reviews where product_no = #{productNo}
+		select reg_date regDate, r.user_no userNo, content, star, img_name imgName, id
+		from reviews r, users u 
+		where product_no = #{productNo}
+		and r.user_no = u.user_no
 	]]>
 	</select>
 	
