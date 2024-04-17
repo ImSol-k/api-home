@@ -3,7 +3,6 @@ package com.javaex.dao;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.jdbc.SQL;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -24,10 +23,13 @@ public class MainDao {
 	}
 	
 	//
-	public void listNoCategory() {
-		System.out.println("dao");
+	public List<MainVo> listNoCategory() {
 		List<MainVo> list = sqlSession.selectList("ssmain.listNoCategory");
-		System.out.println(list);
+		return list;
+	}
+	public List<MainVo> listCategory(String keyword) {
+		List<MainVo> list = sqlSession.selectList("ssmain.listCategory",keyword);
+		return list;
 	}
 	
 
