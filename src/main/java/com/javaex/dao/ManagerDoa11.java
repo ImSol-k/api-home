@@ -35,6 +35,13 @@ public class ManagerDoa11 {
 		return state;
 	}
 
+	//배송완료바꾸기
+	public void update(int no) {
+		
+		int count = sqlSession.update("manager11.update", no);
+		System.out.println(count);
+	}
+	
 	// 누적판매금액
 	public int cPrice() {
 
