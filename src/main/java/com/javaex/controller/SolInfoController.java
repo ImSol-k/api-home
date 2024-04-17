@@ -8,15 +8,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.service.SolInfoService;
 import com.javaex.util.JsonResult;
+import com.javaex.util.JwtUtil;
 import com.javaex.vo.SolCartVo;
 import com.javaex.vo.SolProductVo;
 import com.javaex.vo.SolReviewVo;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("home/info/")
@@ -59,10 +61,8 @@ public class SolInfoController {
 		List<SolReviewVo> reviewList = infoService.exeGetReview(no);
 		if(reviewList.size() == 0) {
 			return JsonResult.fail("리뷰없음");
-		} else if (reviewList != null) {
-			return JsonResult.success(reviewList);
 		} else {
-			return JsonResult.fail("불러오기 실패");
+			return JsonResult.success(reviewList);
 		}
 	}
 	
@@ -71,12 +71,16 @@ public class SolInfoController {
 								  @RequestParam("star") int star, 
 								  @RequestParam("userNo") int userNo, 
 								  @RequestParam("productNo") int pNo, 
-								  @RequestParam("content") String content) {
+								  @RequestParam("content") String content,
+								  HttpServletRequest request) {
 		System.out.println("SolInfoController.reviewWrite"+userNo);
 		System.out.println(file+"/"+star+"/"+content);
-		
-		SolReviewVo reviewVo = infoService.exeSetReview(file, new SolReviewVo(star, content, userNo, pNo));
-		return JsonResult.success(reviewVo);
+		if(JwtUtil.getNoFromHeader(request) > 0) {
+			SolReviewVo reviewVo = infoService.exeSetReview(file, new SolReviewVo(star, content, userNo, pNo));
+			return JsonResult.success(reviewVo);
+		} else {
+			return JsonResult.fail("비로그인이용자");
+		}
 	}
 	
 	/*******************************
@@ -85,13 +89,13 @@ public class SolInfoController {
 	 * @return
 	 */
 	@PostMapping("usercart")
-	public JsonResult cartList(@RequestParam("userNo") int userNo) {
+	public JsonResult cartList(@RequestParam("userNo") int userNo, HttpServletRequest request) {
 		System.out.println("SolInfoController.cartList: "+userNo);
-		List<SolCartVo> cartList = infoService.exeCartList(userNo);
-		if(cartList.size() > 0) {
+		if(JwtUtil.getNoFromHeader(request) > 0) {
+			List<SolCartVo> cartList = infoService.exeCartList(userNo);
 			return JsonResult.success(cartList);
 		} else {
-			return JsonResult.fail("장바구니비어있음");
+			return JsonResult.fail("비로그인이용자");
 		}
 	}
 	@PostMapping("cartupdate")

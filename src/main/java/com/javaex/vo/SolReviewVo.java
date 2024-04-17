@@ -10,6 +10,8 @@ public class SolReviewVo {
 	private String id;
 	private int userNo;
 	private int productNo;
+	
+	private int page;
 
 	public SolReviewVo() {
 		super();
