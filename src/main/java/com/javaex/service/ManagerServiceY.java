@@ -128,4 +128,12 @@ public class ManagerServiceY {
         return savedFileNames; // 저장된 파일 이름들을 반환
     }
 
+	public List<ManagerVoY> exeList() {
+		System.out.println("ManagerServiceY.exeList()");	
+		
+		List<ManagerVoY> productList = managerDaoY.selectList();
+		
+		return productList;
+	}
+
 }

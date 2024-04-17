@@ -15,11 +15,24 @@ public class ManagerVoY {
 
 	private List<MultipartFile> contentFiles;
 	private List<String> contentImg;
+	
+	private float avg_star;
 
 	public ManagerVoY() {
 		super();
 	}
 	
+	
+	public float getAvg_star() {
+		return avg_star;
+	}
+
+
+	public void setAvg_star(float avg_star) {
+		this.avg_star = avg_star;
+	}
+
+
 	public List<String> getContentImg() {
 		return contentImg;
 	}
@@ -87,7 +100,7 @@ public class ManagerVoY {
 	public String toString() {
 		return "ManagerVoY [product_no=" + product_no + ", title=" + title + ", price=" + price + ", category="
 				+ category + ", profile=" + profile + ", main_img=" + main_img + ", contentFiles=" + contentFiles
-				+ ", contentImg=" + contentImg + "]";
+				+ ", contentImg=" + contentImg + ", avg_star=" + avg_star + "]";
 	}
 	
 	
