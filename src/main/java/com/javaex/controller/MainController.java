@@ -21,14 +21,14 @@ public class MainController {
 	@GetMapping("/home/main")
 	public JsonResult main(@RequestParam(value="page",required = false,defaultValue="1") int page , 
 			@RequestParam(value="keyword",required=false,defaultValue="") String keyword) {
+		System.out.println(keyword);
 		List<MainVo> list = mainService.exeList(page,keyword);
-		System.out.println(list);
-		System.out.println("con:"+page);
 		if(list != null) {
 			return JsonResult.success(list);
 		} else {
 			return JsonResult.fail("더 이상 불러올 데이터가 없습니다.");
 		}
 	}
+	
 
 }

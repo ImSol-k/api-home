@@ -18,7 +18,6 @@ public class MainService {
 	
 	// 리스트 가져오기 
 	public List<MainVo> exeList(int page, String keyword) {
-		System.out.println("ser:"+page);
 		// 받아온 페이지가 0보다 크면  그대로 , 아니면 1로 설정
 		page = (page>0) ? page : (page = 1);
 		
@@ -27,7 +26,6 @@ public class MainService {
 		
 		// 시작번호
 		int startRowNo = (page-1)*listCount;
-		System.out.println(startRowNo);
 		
 		Map<String, Object> listMap = new HashMap<String, Object>();
 		listMap.put("startRowNo", startRowNo);
@@ -35,11 +33,16 @@ public class MainService {
 		listMap.put("keyword", keyword);
 		
 		List<MainVo> list = mainDao.list(listMap);
-//		System.out.println(list);
-		if (list != null) {
+		System.out.println(list);
+		if (!list.isEmpty()) {
 			return list;
 		} else {
 			return null;
 		}
 	}
+	
+
+	
+	
+	
 }
