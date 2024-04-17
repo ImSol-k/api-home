@@ -9,6 +9,7 @@
 		<typeAlias alias="productVo" type="com.javaex.vo.SolProductVo" />
 		<typeAlias alias="productImgVo" type="com.javaex.vo.ImageVo" />
 		<typeAlias alias="reviewVo" type="com.javaex.vo.SolReviewVo" />
+		<typeAlias alias="productListVo" type="com.javaex.vo.ProductListVo" />
 	</typeAliases>
 
 	<mappers>

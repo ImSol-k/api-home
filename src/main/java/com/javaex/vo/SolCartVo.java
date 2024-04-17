@@ -8,6 +8,7 @@ public class SolCartVo {
 	private String color;
 	private int count;
 	private int userNo;
+	private int price;
 	
 	public SolCartVo() {
 		super();
@@ -60,12 +61,20 @@ public class SolCartVo {
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
 
 	@Override
 	public String toString() {
 		return "SolCartVo [cart=" + cart + ", product=" + product + ", user=" + user + ", color=" + color + ", count="
-				+ count + "]";
+				+ count + ", userNo=" + userNo + ", price=" + price + "]";
 	}
+
+	
 
 	
 	

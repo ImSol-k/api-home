@@ -73,5 +73,12 @@ public class SolInfoService {
 
 		return 0;
 	}
+	
+	//카트리스트
+	public List<SolCartVo> exeCartList(int userNo){
+		System.out.println("SolInfoService.exeCartList");
+		List<SolCartVo> cartList = infoDao.selectCart(userNo);
+		return cartList;
+	}
 
 }

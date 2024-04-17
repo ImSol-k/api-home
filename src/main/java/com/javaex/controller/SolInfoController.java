@@ -85,8 +85,13 @@ public class SolInfoController {
 	 */
 	@PostMapping("usercart")
 	public JsonResult cartList(@RequestParam("userNo") int userNo) {
-		System.out.println("SolInfoController.cartList");
-		return null;
+		System.out.println("SolInfoController.cartList: "+userNo);
+		List<SolCartVo> cartList = infoService.exeCartList(userNo);
+		if(cartList.size() > 0) {
+			return JsonResult.success(cartList);
+		} else {
+			return JsonResult.fail("장바구니비어있음");
+		}
 	}
 
 }

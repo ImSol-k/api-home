@@ -51,4 +51,12 @@ public class SolInfoDao {
 		sqlSession.insert("solinfo.reviewInsert", reviewVo);
 		return 0;
 	}
+	
+	//카트리스트
+	public List<SolCartVo> selectCart(int userNo){
+		System.out.println("SolInfoDao.selectCart()");
+		List<SolCartVo> cartList = sqlSession.selectList("solinfo.userCartSelect", userNo);
+		System.out.println(cartList);
+		return cartList;
+	}
 }
