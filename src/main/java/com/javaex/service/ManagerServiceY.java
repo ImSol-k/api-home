@@ -148,7 +148,9 @@ public class ManagerServiceY {
 	
 	public List<ManagerVoY> exeCateList(String category){
 		System.out.println("ManagerServiceY.exeCateList");
+		
 		List<ManagerVoY> categoryList = managerDaoY.selectCategoryList(category);
+		
 		return categoryList;
 	}
 

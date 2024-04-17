@@ -56,6 +56,14 @@ public class ManagerDaoY {
 
 		return productList;
 	}
+	
+	public List<ManagerVoY> selectCategoryList(String category){
+		System.out.println("ManagerDaoY.selectCategoryList");
+		
+		List<ManagerVoY> categoryList = sqlSession.selectList("managerY.categoryList", category);
+		
+		return categoryList;
+	}
 
 	public int delete(int no) {
 		System.out.println("ManagerDaoY.delete()");
@@ -70,12 +78,7 @@ public class ManagerDaoY {
 		sqlSession.delete("managerY.delete", no);
 	}
 	
-	public List<ManagerVoY> selectCategoryList(String category){
-		System.out.println("ManagerDaoY.selectCategoryList");
-		List<ManagerVoY> categoryList = sqlSession.selectList("managerY.categoryList", category);
-		System.out.println(categoryList);
-		return categoryList;
-	}
+
 	
 	
 }

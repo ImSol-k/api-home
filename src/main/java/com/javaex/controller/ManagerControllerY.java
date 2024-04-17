@@ -63,7 +63,9 @@ public class ManagerControllerY {
 	@PostMapping("/home/manager/categorylist")
 	public JsonResult categoryList(@RequestParam String category) {
 		System.out.println("GuestbookController.categoryList: "+category);
+		
 		List<ManagerVoY> categoryList = managerServiceY.exeCateList(category);
+		
 		return JsonResult.success(categoryList);
 	}
 	
