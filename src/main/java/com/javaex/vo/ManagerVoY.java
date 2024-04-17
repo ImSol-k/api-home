@@ -2,15 +2,17 @@ package com.javaex.vo;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ManagerVoY {
 
 	private int product_no;
-	private String product_name;
+	private String title;
 	private int price;
 	private String category;
-	private String main_img;
+	private MultipartFile profile;
 
-	private List<ImageVo> imageList;
+	private List<MultipartFile> contentFiles;
 
 	public ManagerVoY() {
 		super();
@@ -24,12 +26,12 @@ public class ManagerVoY {
 		this.product_no = product_no;
 	}
 
-	public String getProduct_name() {
-		return product_name;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setProduct_name(String product_name) {
-		this.product_name = product_name;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public int getPrice() {
@@ -48,26 +50,32 @@ public class ManagerVoY {
 		this.category = category;
 	}
 
-	public String getMain_img() {
-		return main_img;
+	public MultipartFile getProfile() {
+		return profile;
 	}
 
-	public void setMain_img(String main_img) {
-		this.main_img = main_img;
+	public void setProfile(MultipartFile profile) {
+		this.profile = profile;
 	}
 
-	public List<ImageVo> getImageList() {
-		return imageList;
+	
+
+	public List<MultipartFile> getContentFiles() {
+		return contentFiles;
 	}
 
-	public void setImageList(List<ImageVo> imageList) {
-		this.imageList = imageList;
+	public void setContentFiles(List<MultipartFile> contentFiles) {
+		this.contentFiles = contentFiles;
 	}
 
 	@Override
 	public String toString() {
-		return "ManagerVoY [product_no=" + product_no + ", product_name=" + product_name + ", price=" + price
-				+ ", category=" + category + ", main_img=" + main_img + ", imageList=" + imageList + "]";
+		return "ManagerVoY [product_no=" + product_no + ", title=" + title + ", price=" + price + ", category="
+				+ category + ", profile=" + profile + ", contentFiles=" + contentFiles + "]";
 	}
+
+	
+
+	
 
 }

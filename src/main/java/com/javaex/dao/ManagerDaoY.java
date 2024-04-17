@@ -8,16 +8,22 @@ import com.javaex.vo.ManagerVoY;
 
 @Repository
 public class ManagerDaoY {
-   
-   @Autowired
-   private SqlSession sqlSession;
 
-   public int insert(ManagerVoY managerVoY) {
-      System.out.println("ManagerDaoY.insert()");
-      
-      int count = sqlSession.insert("managerY.insert", managerVoY);
-      
-      return count;
-   }
+	@Autowired
+	private SqlSession sqlSession;
+
+	public int insert(ManagerVoY managerVoY) {
+		System.out.println("ManagerDaoY.insert()");
+
+		int count = sqlSession.insert("managerY.insert", managerVoY);
+
+		return count;
+	}
+
+//	public void insertImg(ImageVo imageVo) {
+//	    System.out.println("ManagerDaoY.insertImg()");
+//
+//	    sqlSession.insert("managerY.insertImg", imageVo);
+//	}
 
 }
