@@ -62,5 +62,12 @@
 		and c.color_no = r.no
 	]]>
 	</select>
+	<update id="cartUpdate" parameterType="SolCartVo">
+	<![CDATA[
+		update carts set count = #{count}
+		where product_no = (select product_no from product where product_name = #{product})
+		and color_no = (select no from colors where color = #{color})
+	]]>
+	</update>
 	
 </mapper>

@@ -1,5 +1,6 @@
 package com.javaex.service;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,9 +34,19 @@ public class ManagerService11 {
 		
 		System.out.println(stateMap);
 		
+		System.out.println();
+		
 		return stateMap;
 	}
 	
+	//배송완료
+	public void update(int no) {
+		
+		md.update(no);
+	}
+	
+	
+	//데이터 가져오기
 	public Map<String, Integer> datas() {
 		
 		//누적 판매금액 가져오기

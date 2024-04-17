@@ -83,5 +83,11 @@ public class SolInfoService {
 		List<SolCartVo> cartList = infoDao.selectCart(userNo);
 		return cartList;
 	}
+	//카트 업데이트
+	public int exeCartUpdate(SolCartVo cartVo) {
+		System.out.println("SolInfoService.exeCartUpdate");
+		int count = infoDao.updateCart(cartVo);
+		return count;
+	}
 
 }

@@ -2,6 +2,7 @@ package com.javaex.vo;
 
 public class StateVo {
 	
+	private int no;
 	private String productName;
 	private int count;
 	private int price;
@@ -16,9 +17,10 @@ public class StateVo {
 	}
 
 
-	public StateVo(String productName, int count, int price, String nickName, String color, String mainImage,
+	public StateVo(int no, String productName, int count, int price, String nickName, String color, String mainImage,
 			String state) {
 		super();
+		this.no = no;
 		this.productName = productName;
 		this.count = count;
 		this.price = price;
@@ -26,6 +28,16 @@ public class StateVo {
 		this.color = color;
 		this.mainImage = mainImage;
 		this.state = state;
+	}
+
+
+	public int getNo() {
+		return no;
+	}
+
+
+	public void setNo(int no) {
+		this.no = no;
 	}
 
 
@@ -101,9 +113,10 @@ public class StateVo {
 
 	@Override
 	public String toString() {
-		return "StateVo [productName=" + productName + ", count=" + count + ", price=" + price + ", nickName="
-				+ nickName + ", color=" + color + ", mainImage=" + mainImage + ", state=" + state + "]";
+		return "StateVo [no=" + no + ", productName=" + productName + ", count=" + count + ", price=" + price
+				+ ", nickName=" + nickName + ", color=" + color + ", mainImage=" + mainImage + ", state=" + state + "]";
 	}
+
 	
 	
 	
