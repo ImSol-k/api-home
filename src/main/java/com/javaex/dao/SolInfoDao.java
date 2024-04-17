@@ -48,8 +48,8 @@ public class SolInfoDao {
 	//리뷰작성
 	public int insertReview(SolReviewVo reviewVo) {
 		System.out.println("SolInfoDao.insertReview()");
-		sqlSession.insert("solinfo.reviewInsert", reviewVo);
-		return 0;
+		int count = sqlSession.insert("solinfo.reviewInsert", reviewVo);
+		return count;
 	}
 	
 	//카트리스트
