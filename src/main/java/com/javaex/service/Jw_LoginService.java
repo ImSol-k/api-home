@@ -10,12 +10,12 @@ import com.javaex.vo.Jw_Vo;
 @Service
 public class Jw_LoginService {
 
-    @Autowired
-    private Jw_LoginDao jw_LoginDao;
+	@Autowired
+	private Jw_LoginDao jw_LoginDao;
 
-    public Jw_Vo exelogin(String id, String password) {
-    	System.out.println("Jw_LoginService");
-    	
-        return jw_LoginDao.Jw_Loginlogin(id, password);
-    }
+	public Jw_Vo exelogin(String id, String password) {
+		System.out.println("Jw_LoginService");
+
+		return jw_LoginDao.Jw_Loginlogin(id, password);
+	}
 }

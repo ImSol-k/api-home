@@ -3,8 +3,8 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="jw">
 
-	<!-- login -->
-	    <select id="login" resultType="com.javaex.vo.Jw_Vo" parameterType="com.javaex.vo.Jw_Vo">
+    <!-- login -->
+    <select id="login" resultType="com.javaex.vo.Jw_Vo" parameterType="com.javaex.vo.Jw_Vo">
         <![CDATA[
             SELECT 
                 user_no userNo,
@@ -20,5 +20,50 @@
             WHERE id = #{id}
             AND password = #{password}
         ]]>
-      </select>
+    </select>
+
+    <!-- 유저 정보 가져오기 -->
+    <select id="getUserInfo" resultType="com.javaex.vo.Jw_Vo" parameterType="com.javaex.vo.Jw_Vo">
+    <![CDATA[
+        SELECT 
+            user_no userNo,
+            id,
+            password,
+            name,
+            nick_name nickName,
+            hp,
+            email,
+            address,
+            manager
+        FROM 
+            users
+        WHERE 
+            user_no = #{userNo}
+    ]]>
+    </select>
+
+    <!-- 주문 내역 가져오기 -->
+    <select id="getOrders" resultType="com.javaex.vo.OrderInfo_Vo" parameterType="com.javaex.vo.Jw_Vo"> <!-- 파라미터 타입 변경 -->
+    <![CDATA[
+        SELECT 
+            orders.order_no AS orderNo, 
+            orders.order_date AS orderDate,
+            product.product_name AS productName,
+            product.price,
+            colors.color
+        FROM 
+            orders 
+        JOIN 
+            orderlist ON orders.order_no = orderlist.order_no
+        JOIN 
+            product ON orderlist.product_no = product.product_no
+        LEFT JOIN 
+            colors ON orderlist.color_no = colors.no
+        WHERE 
+            users.userNo = #{userNo}
+        ORDER BY 
+            orders.order_date DESC;
+    ]]>
+    </select>
+
 </mapper>
