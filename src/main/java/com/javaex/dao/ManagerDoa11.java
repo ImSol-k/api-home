@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.javaex.vo.OrdersVo;
 import com.javaex.vo.PayendVo1;
 import com.javaex.vo.PayendVo2;
 import com.javaex.vo.StateVo;
@@ -284,14 +285,22 @@ public class ManagerDoa11 {
 
 		return sqlSession.selectOne("manager11.hangerMonthM3");
 	}
-
+	
+	//구매완료 페이지
 	public PayendVo1 payend1(int no) {
 
 		return sqlSession.selectOne("manager11.payend1", no);
 	}
-
+	
+	//구매완료 페이지
 	public List<PayendVo2> payend2(int no) {
 
 		return sqlSession.selectList("manager11.payend2", no);
+	}
+	
+	//orders의 리스트
+	public List<OrdersVo> orders() {
+		
+		return sqlSession.selectList("manager11.orders");
 	}
 }

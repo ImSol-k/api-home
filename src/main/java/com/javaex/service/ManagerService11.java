@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.javaex.dao.ManagerDoa11;
+import com.javaex.vo.OrdersVo;
 import com.javaex.vo.PayendVo1;
 import com.javaex.vo.PayendVo2;
 import com.javaex.vo.StateVo;
@@ -32,9 +33,12 @@ public class ManagerService11 {
 		stateMap.put("ing", ing);
 		stateMap.put("end", end);
 
-		System.out.println(stateMap);
 
-		System.out.println();
+		//구매의 리스트
+		List<OrdersVo> orders = md.orders();
+		System.out.println(orders);
+		
+		stateMap.put("orders", orders);
 
 		return stateMap;
 	}
@@ -216,5 +220,10 @@ public class ManagerService11 {
 		p.put("pay2", pay2);
 		
 		return p;
+	}
+	
+	public void list2(int no) {
+	
+		//md.list2(no);
 	}
 }

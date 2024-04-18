@@ -39,7 +39,7 @@ public class Jw_PayService {
 	    	System.out.println(orderInfo_Vo.getOrderList().get(i));
 	    }
 
-	    return count;
+	    return orderInfo_Vo.getOrderNo();
 	}
 	
 
