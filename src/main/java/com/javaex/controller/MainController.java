@@ -42,6 +42,7 @@ public class MainController {
 	@GetMapping("/home/main/category")
 	public JsonResult category(@RequestParam(value="keyword") String keyword) {
 		List<MainVo> list = mainService.exeCatogery(keyword);
+		
 		System.out.println(list);
 		if(list != null) {
 			return JsonResult.success(list);
@@ -50,11 +51,10 @@ public class MainController {
 		}
 	}
 	@GetMapping("home/main/sorttype")
-	public void sortType(@RequestParam(value="keyword") String keyword)
-			  {
+	public void sortType(@RequestParam(value="word") String word , @RequestParam(value="sortType") String sortType) {
 		System.out.println("sort");
-		System.out.println(keyword);
-//		System.out.println(sortType);
+		System.out.println(word);
+		System.out.println(sortType);
 	}
 	
 
