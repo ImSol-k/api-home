@@ -497,15 +497,20 @@
 	</select>
 
 	<select id="hangerMonthM2" resultType="int">
-		select if(sum(price*count) is null, 0, sum(price*count))
+		select if(sum(price*count)
+		is null, 0, sum(price*count))
 		from product, orderlist, orders
-		where product.product_no = orderlist.product_no
-		and orderlist.order_no = orders.order_no
-		and (category = '옷장' or category = '행거' or category = '붙박이장')
-		and order_date like (SELECT date_format(date(DATE_SUB(date(now()),
+		where
+		product.product_no = orderlist.product_no
+		and orderlist.order_no =
+		orders.order_no
+		and (category = '옷장' or category = '행거' or category =
+		'붙박이장')
+		and order_date like (SELECT
+		date_format(date(DATE_SUB(date(now()),
 		INTERVAL 1 MONTH)), '%Y-%m%'))
 	</select>
-	
+
 	<select id="hangerMonthC3" resultType="int">
 		select if(sum(count) is
 		null, 0, sum(count))
@@ -522,12 +527,46 @@
 	</select>
 
 	<select id="hangerMonthM3" resultType="int">
-		select if(sum(price*count) is null, 0, sum(price*count))
+		select if(sum(price*count)
+		is null, 0, sum(price*count))
 		from product, orderlist, orders
-		where product.product_no = orderlist.product_no
-		and orderlist.order_no = orders.order_no
-		and (category = '옷장' or category = '행거' or category = '붙박이장')
-		and order_date like (SELECT date_format(date(DATE_SUB(date(now()),
+		where
+		product.product_no = orderlist.product_no
+		and orderlist.order_no =
+		orders.order_no
+		and (category = '옷장' or category = '행거' or category =
+		'붙박이장')
+		and order_date like (SELECT
+		date_format(date(DATE_SUB(date(now()),
 		INTERVAL 2 MONTH)), '%Y-%m%'))
+	</select>
+
+	<select id="payend1" parameterType="int"
+		resultType="com.javaex.vo.PayendVo1">
+		select name,
+		hp,
+		address,
+		sum(price*count) total
+		from users, orderlist, orders, product
+		where orders.user_no = users.user_no
+		and orders.order_no = orderlist.order_no
+		and orderlist.product_no = product.product_no
+		and orders.order_no = #{no}
+	</select>
+
+	<select id="payend2" parameterType="int"
+		resultType="com.javaex.vo.PayendVo2">
+		select
+		product_name productName,
+
+		price*count productPrice
+		from users, orderlist,
+		orders, product
+		where orders.user_no = users.user_no
+		and orders.order_no
+		= orderlist.order_no
+		and orderlist.product_no = product.product_no
+		and
+		orders.order_no = #{no}
 	</select>
 </mapper>
