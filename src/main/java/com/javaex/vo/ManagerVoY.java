@@ -22,7 +22,6 @@ public class ManagerVoY {
 		super();
 	}
 	
-	
 	public float getAvg_star() {
 		return avg_star;
 	}

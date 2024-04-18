@@ -147,11 +147,19 @@ public class ManagerServiceY {
 	}
 	
 	public List<ManagerVoY> exeCateList(String category){
-		System.out.println("ManagerServiceY.exeCateList");
+		System.out.println("ManagerServiceY.exeCateList()");
 		
 		List<ManagerVoY> categoryList = managerDaoY.selectCategoryList(category);
 		
 		return categoryList;
+	}
+
+	public int exeCartCount(int user_no) {
+		System.out.println("ManagerServiceY.exeCartCount()");
+		
+		int count = managerDaoY.selectCartCount(user_no);
+		
+		return count;
 	}
 
 }
