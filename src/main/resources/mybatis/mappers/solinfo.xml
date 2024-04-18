@@ -10,6 +10,11 @@
 		from product where product_no = #{productNo}
 	]]>
 	</select>
+	<select id="selectColor" resultType="string">
+	<![CDATA[
+		select color from colors
+	]]>
+	</select>
 	<!-- 상품정보 이미지 -->
 	<select id="selectProductImg" resultType="string" parameterType="int">
 	<![CDATA[
@@ -20,7 +25,7 @@
 	<!-- 리뷰 -->
 	<select id="selectReview" resultType="reviewVo" parameterType="int">
 	<![CDATA[
-		select reg_date regDate, r.user_no userNo, content, star, img_name imgName, id
+		select review_no reviewNo, reg_date regDate, r.user_no userNo, content, star, img_name imgName, id
 		from reviews r, users u 
 		where product_no = #{productNo}
 		and r.user_no = u.user_no
@@ -37,6 +42,12 @@
 		select last_insert_id()
 	</selectKey>
 	</insert>
+	<!-- 리뷰삭제 -->
+	<delete id="reviewDelete" parameterType="int">
+	<![CDATA[
+		delete from reviews where review_no = #{reviewNo}
+	]]>
+	</delete>
 
 	<!-- 장바구니 추가 -->
 	<insert id="insertCart" parameterType="SolCartVo">
@@ -54,7 +65,7 @@
 	<!-- 유저 장바구니 불러오기 -->
 	<select id="userCartSelect" parameterType="int" resultType="SolCartVo">
 	<![CDATA[
-		select u.id user, p.product_name product, r.color, count, p.price
+		select cart_no cart, u.id user, p.product_name product, r.color, count, p.price
 		from carts c, product p, users u, colors r
 		where c.product_no = p.product_no
 		and c.user_no = u.user_no
@@ -69,5 +80,12 @@
 		and color_no = (select no from colors where color = #{color})
 	]]>
 	</update>
+	<delete id="cartDelete" parameterType="map">
+	<![CDATA[
+		delete from carts 
+		where cart_no = #{cart}
+		and user_no = #{userNo}
+	]]>
+	</delete>
 	
 </mapper>

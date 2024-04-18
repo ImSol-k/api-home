@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,12 @@ public class SolInfoService {
 		List<ImageVo> imgList = infoDao.selectImg(no);
 		productVo.setImgList(imgList);
 		return productVo;
+	}
+	
+	public List<String> exeColor(){
+		System.out.println("SolInfoService.exeCartAdd()");
+		List<String> colorList = infoDao.selectColor();
+		return colorList;
 	}
 
 	// 리뷰
@@ -78,6 +85,12 @@ public class SolInfoService {
 		}
 		return reviewVo;
 	}
+	//리뷰삭제
+	public int exeDeleteReview(int no) {
+		System.out.println("SolInfoService.exeDeleteReview()");
+		infoDao.delelteReview(no);
+		return 0;
+	}
 
 	// 카트리스트
 	public List<SolCartVo> exeCartList(int userNo) {
@@ -90,6 +103,12 @@ public class SolInfoService {
 		System.out.println("SolInfoService.exeCartUpdate");
 		int count = infoDao.updateCart(cartVo);
 		return count;
+	}
+	//카트삭제
+	public int exeCartDelete(Map<String, Object> delMap) {
+		System.out.println("SolInfoService.exeCartDelete()");
+		infoDao.deleteCart(delMap);
+		return 0;
 	}
 
 }

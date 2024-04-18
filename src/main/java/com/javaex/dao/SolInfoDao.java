@@ -1,6 +1,7 @@
 package com.javaex.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,12 +45,23 @@ public class SolInfoDao {
 //		System.out.println("(" + imgList.size() + ")" + imgList);
 		return imgList;
 	}
+	public List<String> selectColor(){
+		System.out.println("SolInfoDao.selectColor()");
+		List<String> colorList = sqlSession.selectList("solinfo.selectColor");
+		return colorList;
+	}
 	
 	//리뷰작성
 	public int insertReview(SolReviewVo reviewVo) {
 		System.out.println("SolInfoDao.insertReview()");
 		int count = sqlSession.insert("solinfo.reviewInsert", reviewVo);
 		return count;
+	}
+	//리뷰삭제
+	public int delelteReview(int no) {
+		System.out.println("SolInfoDao.delelteReview()");
+		sqlSession.delete("solinfo.reviewDelete", no);
+		return 0;
 	}
 	
 	//카트리스트
@@ -64,5 +76,11 @@ public class SolInfoDao {
 		System.out.println("SolInfoDao.updateCart");
 		int count = sqlSession.update("solinfo.cartUpdate", cartVo);
 		return count;
+	}
+	//카트 삭제
+	public int deleteCart(Map<String, Object> delMap) {
+		System.out.println("SolInfoDao.deleteCart");
+		sqlSession.delete("solinfo.cartDelete", delMap);
+		return 0;
 	}
 }

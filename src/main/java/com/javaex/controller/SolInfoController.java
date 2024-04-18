@@ -1,8 +1,11 @@
 package com.javaex.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -55,6 +58,14 @@ public class SolInfoController {
 			
 		}
 	}
+	@PostMapping("color")
+	public JsonResult colorList() {
+		System.out.println("SolInfoController.colorList");
+		List<String> colorList = infoService.exeColor();
+		System.out.println(colorList);
+		return JsonResult.success(colorList);
+	}
+	
 	@PostMapping("review/{no}")
 	public JsonResult getReview(@PathVariable(value = "no") int no) {
 		System.out.println("SolInfoController.getReview"+no);
@@ -82,6 +93,12 @@ public class SolInfoController {
 			return JsonResult.fail("비로그인이용자");
 		}
 	}
+	@DeleteMapping("delete")
+	public JsonResult reviewDelete(@RequestParam int no) {
+		System.out.println("SolInfoController.reviewDelete()" + no);
+		infoService.exeDeleteReview(no);
+		return JsonResult.success("삭제완료");
+	}
 	
 	/*******************************
 	 * Cart Contorller
@@ -108,6 +125,19 @@ public class SolInfoController {
 		} else {
 			return JsonResult.fail("추가실패");
 		}
+	}
+	@DeleteMapping("cartdelete")
+	public JsonResult cartDelete(@RequestParam int no,HttpServletRequest request) {
+		System.out.println("SolInfoController.cartDelete" + no);
+		
+		int userNo = JwtUtil.getNoFromHeader(request);
+		Map<String, Object> delMap = new HashMap<String, Object>();
+		delMap.put("cart", no);
+		delMap.put("userNo", userNo);
+		
+		infoService.exeCartDelete(delMap);
+		
+		return JsonResult.success("장바구니 삭제");
 	}
 
 }
