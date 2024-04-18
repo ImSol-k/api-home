@@ -3,8 +3,8 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="jw">
 
-   <!-- 사용자 로그인 정보 조회 -->
-    <select id="login" resultType="com.javaex.vo.Jw_Vo" parameterType="com.javaex.vo.Jw_Vo">
+	<!-- 사용자 로그인 정보 조회 -->
+	<select id="login" resultType="com.javaex.vo.Jw_Vo" parameterType="com.javaex.vo.Jw_Vo">
         <![CDATA[
             SELECT 
                 user_no userNo,
@@ -20,10 +20,10 @@
             WHERE id = #{id}
             AND password = #{password}
         ]]>
-    </select>
+	</select>
 
-    <!-- 사용자 정보 조회 -->
-    <select id="getUserInfo" resultType="com.javaex.vo.Jw_Vo" parameterType="com.javaex.vo.Jw_Vo">
+	<!-- 사용자 정보 조회 -->
+	<select id="getUserInfo" resultType="com.javaex.vo.Jw_Vo" parameterType="com.javaex.vo.Jw_Vo">
     <![CDATA[
         SELECT 
             user_no userNo,
@@ -40,10 +40,10 @@
         WHERE 
             user_no = #{userNo}
     ]]>
-    </select>
+	</select>
 
-    <!-- 주문 내역 조회 -->
-    <select id="getOrders" resultType="com.javaex.vo.OrderInfo_Vo" parameterType="com.javaex.vo.Jw_Vo">
+	<!-- 주문 내역 조회 -->
+	<select id="getOrders" resultType="com.javaex.vo.OrderInfo_Vo" parameterType="com.javaex.vo.Jw_Vo">
     <![CDATA[
         SELECT 
             orders.order_no orderNo, 
@@ -64,26 +64,22 @@
         ORDER BY 
             orders.order_date DESC;
     ]]>
-    </select>
-    
-    
-    
-    
+	</select>
 
-    <!-- 주문 생성 및 주문 번호 반환 -->
-    <insert id="createOrder" parameterType="com.javaex.vo.OrderInfo_Vo">
+	<!-- 주문 생성 및 주문 번호 반환 -->
+	<insert id="createOrder" parameterType="com.javaex.vo.OrderInfo_Vo">
     <![CDATA[
         INSERT INTO orders
         VALUES (NULL, #{userNo}, NOW(), '주문완료');
     ]]>
-        <selectKey keyProperty="orderNo" resultType="int" order="AFTER">
-            SELECT LAST_INSERT_ID() AS orderNo ;
-        </selectKey>
-    </insert>
+		<selectKey keyProperty="orderNo" resultType="int" order="AFTER">
+			SELECT LAST_INSERT_ID() orderNo ;
+		</selectKey>
+	</insert>
 
 
-    <!-- 주문 상세 정보 생성 -->
-    <insert id="createOrderDetail" parameterType="com.javaex.vo.OrderDetail_Vo">
+	<!-- 주문 상세 정보 생성 -->
+	<insert id="createOrderDetail" parameterType="com.javaex.vo.OrderDetail_Vo">
     <![CDATA[
         INSERT INTO orderlist (order_no orderNo, 
                                product_no productNo, 
@@ -91,14 +87,43 @@
                                color_no colorNo)
         VALUES (#{orderNo}, #{productNo}, #{count}, #{colorNo});
     ]]>
-    </insert>
+	</insert>
 
-    <!-- 장바구니 비우기 -->
-    <delete id="clearCart" parameterType="int">
-    <![CDATA[
+    <!-- 장바구니 항목 조회 -->
+    <select id="getCartItems" resultType="com.javaex.vo.SolCartVo" parameterType="int">
+        <![CDATA[
+        SELECT
+		     c.cart_no  cart,
+		     p.product_no  productNo,
+		     p.product_name  product,
+		     u.name  user,
+		     co.color  color,
+		     co.no  colorNo,
+		     c.count,
+		     c.user_no userNo,
+		     p.price
+		FROM
+		     carts c
+		JOIN
+		     product p ON c.product_no = p.product_no
+		JOIN
+		     users u ON c.user_no = u.user_no
+		LEFT JOIN
+		     colors co ON c.color_no = co.no
+		WHERE
+             c.user_no = #{userNo};
+        ]]>
+    </select>
+
+</mapper>
+
+
+
+	<!-- 장바구니 비우기 -->
+	<!--  <delete id="clearCart" parameterType="int">
+    [CDATA[
         DELETE FROM carts
         WHERE user_no = #{userNo};
     ]]>
-    </delete>
-    
-</mapper>
+	</delete> -->
+

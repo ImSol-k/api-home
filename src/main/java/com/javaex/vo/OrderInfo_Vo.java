@@ -10,10 +10,10 @@ public class OrderInfo_Vo {
     private String productName;
     private int price;
     private String color;
-    public List<OrderDetail_Vo> OrderDetailList;
+    public List<OrderDetail_Vo> OrderList;
 
     public OrderInfo_Vo() {
-        this.OrderDetailList = new ArrayList<>(); // OrderDetailList 필드 초기화
+        this.OrderList = new ArrayList<>(); // OrderDetailList 필드 초기화
     }
 
     public OrderInfo_Vo(int orderNo, String orderDate, String productName, int price, String color) {
@@ -23,7 +23,7 @@ public class OrderInfo_Vo {
         this.productName = productName;
         this.price = price;
         this.color = color;
-        this.OrderDetailList = new ArrayList<>(); // OrderDetailList 필드 초기화
+        this.OrderList = new ArrayList<>(); // OrderDetailList 필드 초기화
     }
 
     public int getUserNo() {
@@ -74,17 +74,17 @@ public class OrderInfo_Vo {
         this.color = color;
     }
 
-    public List<OrderDetail_Vo> getOrderDetailList() {
-        return OrderDetailList;
+    public List<OrderDetail_Vo> getOrderList() {
+        return OrderList;
     }
 
-    public void setOrderDetailList(List<OrderDetail_Vo> orderDetailList) {
-        OrderDetailList = orderDetailList;
+    public void setOrderList(List<OrderDetail_Vo> orderList) {
+    	OrderList = OrderList;
     }
 
     @Override
     public String toString() {
         return "OrderInfo_Vo [userNo=" + userNo + ", orderNo=" + orderNo + ", orderDate=" + orderDate + ", productName="
-                + productName + ", price=" + price + ", color=" + color + ", OrderDetailList=" + OrderDetailList + "]";
+                + productName + ", price=" + price + ", color=" + color + ", OrderList=" + OrderList + "]";
     }
 }
