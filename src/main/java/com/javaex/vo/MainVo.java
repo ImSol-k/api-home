@@ -8,18 +8,21 @@ public class MainVo {
 	private String productName;
 	private double star;
 	private int price;
+	private int count;
 	
 	public MainVo() {
 
 	}
-
-	public MainVo(int productNo, String mainImg, String category, String productName, double star, int price) {
+	
+	public MainVo(int productNo, String mainImg, String category, String productName, double star, int price,
+			int count) {
 		this.productNo = productNo;
 		this.mainImg = mainImg;
 		this.category = category;
 		this.productName = productName;
 		this.star = star;
 		this.price = price;
+		this.count = count;
 	}
 
 	public int getProductNo() {
@@ -70,10 +73,18 @@ public class MainVo {
 		this.price = price;
 	}
 
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
 	@Override
 	public String toString() {
 		return "MainVo [productNo=" + productNo + ", mainImg=" + mainImg + ", category=" + category + ", productName="
-				+ productName + ", star=" + star + ", price=" + price + "]";
+				+ productName + ", star=" + star + ", price=" + price + ", count=" + count + "]";
 	}
 	
 }

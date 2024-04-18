@@ -77,8 +77,12 @@ public class ManagerDaoY {
 		System.out.println("ManagerDaoY.delete02()");
 		sqlSession.delete("managerY.delete", no);
 	}
-	
 
-	
-	
+	public int selectCartCount(int user_no) {
+		System.out.println("ManagerDaoY.selectCartCount()");
+		
+		int count = sqlSession.selectOne("managerY.cartCount", user_no);
+		
+		return count;
+	}
 }

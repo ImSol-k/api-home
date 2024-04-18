@@ -49,6 +49,10 @@ public class MainService {
 			return null;
 		}		
 	}
+	
+	public List<MainVo> exeHitList() {
+		return mainDao.getHitList();
+	}
 
 	
 	

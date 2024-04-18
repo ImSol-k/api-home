@@ -27,6 +27,9 @@ public class MainDao {
 		return list;
 	}
 	
+	public List<MainVo> getHitList() {
+		return sqlSession.selectList("ssmain.hitlist");
+	}
 
 
 }
