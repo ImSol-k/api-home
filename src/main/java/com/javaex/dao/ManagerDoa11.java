@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.javaex.vo.PayendVo1;
+import com.javaex.vo.PayendVo2;
 import com.javaex.vo.StateVo;
 
 @Repository
@@ -249,25 +251,25 @@ public class ManagerDoa11 {
 
 	// 옷장 당월 판매수
 	public int hangerMonthC() {
-		
+
 		return sqlSession.selectOne("manager11.hangerMonthC");
 	}
 
 	// 옷장 당월 판매금액
 	public int hangerMonthM() {
-		
+
 		return sqlSession.selectOne("manager11.hangerMonthM");
 	}
 
 	// 옷장 전원 판매수
 	public int hangerMonthC2() {
-		
+
 		return sqlSession.selectOne("manager11.hangerMonthC2");
 	}
 
 	// 옷장 전원 판매금액
 	public int hangerMonthM2() {
-		
+
 		return sqlSession.selectOne("manager11.hangerMonthM2");
 	}
 
@@ -279,7 +281,17 @@ public class ManagerDoa11 {
 
 	// 옷장 전전월 판매금액
 	public int hangerMonthM3() {
-		
+
 		return sqlSession.selectOne("manager11.hangerMonthM3");
+	}
+
+	public PayendVo1 payend1(int no) {
+
+		return sqlSession.selectOne("manager11.payend1", no);
+	}
+
+	public List<PayendVo2> payend2(int no) {
+
+		return sqlSession.selectList("manager11.payend2", no);
 	}
 }

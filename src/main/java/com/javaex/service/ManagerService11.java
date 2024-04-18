@@ -1,6 +1,5 @@
 package com.javaex.service;
 
-import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.javaex.dao.ManagerDoa11;
+import com.javaex.vo.PayendVo1;
+import com.javaex.vo.PayendVo2;
 import com.javaex.vo.StateVo;
 
 @Service
@@ -200,5 +201,20 @@ public class ManagerService11 {
 		
 
 		return datas;
+	}
+	
+	public Map<String, Object> payend(int no) {
+		
+		PayendVo1 pay1 = md.payend1(no);
+		List<PayendVo2> pay2 = md.payend2(no);
+		
+		System.out.println(pay1);
+		System.out.println(pay2);
+		
+		Map<String, Object> p = new HashMap<>();
+		p.put("pay1", pay1);
+		p.put("pay2", pay2);
+		
+		return p;
 	}
 }
