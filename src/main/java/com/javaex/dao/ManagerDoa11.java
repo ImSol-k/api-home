@@ -35,13 +35,13 @@ public class ManagerDoa11 {
 		return state;
 	}
 
-	//배송완료바꾸기
+	// 배송완료바꾸기
 	public void update(int no) {
-		
+
 		int count = sqlSession.update("manager11.update", no);
 		System.out.println(count);
 	}
-	
+
 	// 누적판매금액
 	public int cPrice() {
 
@@ -82,7 +82,7 @@ public class ManagerDoa11 {
 	public int bedCount() {
 
 		int bedcount = sqlSession.selectOne("manager11.bedcount");
-		
+
 		System.out.println(bedcount);
 		return bedcount;
 	}
@@ -91,7 +91,7 @@ public class ManagerDoa11 {
 	public int shopaCount() {
 
 		int shopacount = sqlSession.selectOne("manager11.shopacount");
-		
+
 		System.out.println(shopacount);
 		return shopacount;
 	}
@@ -100,7 +100,7 @@ public class ManagerDoa11 {
 	public int tableCount() {
 
 		int tablecount = sqlSession.selectOne("manager11.tablecount");
-		
+
 		System.out.println(tablecount);
 		return tablecount;
 	}
@@ -109,8 +109,177 @@ public class ManagerDoa11 {
 	public int hangerCount() {
 
 		int hangercount = sqlSession.selectOne("manager11.hangercount");
-		
+
 		System.out.println(hangercount);
 		return hangercount;
+	}
+
+	// 금일 침대판매량
+	public int todaybed() {
+
+		return sqlSession.selectOne("manager11.todaybed");
+	}
+
+	// 금일 쇼파판매량
+	public int todayshopa() {
+
+		return sqlSession.selectOne("manager11.todayshopa");
+	}
+
+	// 금일 테이블판매량
+	public int todaytable() {
+
+		return sqlSession.selectOne("manager11.todaytable");
+	}
+
+	// 금일 옷장판매량
+	public int todayhanger() {
+
+		return sqlSession.selectOne("manager11.todayhanger");
+	}
+
+	////////
+	// 침대 당월 판매수
+	public int bedMonthC() {
+
+		return sqlSession.selectOne("manager11.bedMonthC");
+	}
+
+	// 침대 당월 판매금액
+	public int bedMonthM() {
+
+		return sqlSession.selectOne("manager11.bedMonthM");
+	}
+
+	// 침대 전원 판매수
+	public int bedMonthC2() {
+
+		return sqlSession.selectOne("manager11.bedMonthC2");
+	}
+
+	// 침대 전월 판매금액
+	public int bedMonthM2() {
+
+		return sqlSession.selectOne("manager11.bedMonthM2");
+	}
+
+	// 침대 전전월 판매수
+	public int bedMonthC3() {
+
+		return sqlSession.selectOne("manager11.bedMonthC3");
+	}
+
+	// 침대 전전월 판매금액
+	public int bedMonthM3() {
+
+		return sqlSession.selectOne("manager11.bedMonthM3");
+	}
+
+	// 쇼파 당월 판매수
+	public int shopaMonthC() {
+
+		return sqlSession.selectOne("manager11.shopaMonthC");
+	}
+
+	// 쇼파 당월 판매금액
+	public int shopaMonthM() {
+
+		return sqlSession.selectOne("manager11.shopaMonthM");
+	}
+
+	// 쇼파 전원 판매수
+	public int shopaMonthC2() {
+
+		return sqlSession.selectOne("manager11.shopaMonthC2");
+	}
+
+	// 쇼파 전원 판매금액
+	public int shopaMonthM2() {
+
+		return sqlSession.selectOne("manager11.shopaMonthM2");
+	}
+
+	// 쇼파 전전월 판매수
+	public int shopaMonthC3() {
+
+		return sqlSession.selectOne("manager11.shopaMonthC3");
+	}
+
+	// 쇼파 전전월 판매금액
+	public int shopaMonthM3() {
+
+		return sqlSession.selectOne("manager11.shopaMonthM3");
+	}
+
+	// 테이블 당월 판매수
+	public int tableMonthC() {
+
+		return sqlSession.selectOne("manager11.tableMonthC");
+	}
+
+	// 테이블 당월 판매금액
+	public int tableMonthM() {
+
+		return sqlSession.selectOne("manager11.tableMonthM");
+	}
+
+	// 테이블 전원 판매수
+	public int tableMonthC2() {
+
+		return sqlSession.selectOne("manager11.tableMonthC2");
+	}
+
+	// 테이블 전원 판매금액
+	public int tableMonthM2() {
+
+		return sqlSession.selectOne("manager11.tableMonthM2");
+	}
+
+	// 테이블 전전월 판매수
+	public int tableMonthC3() {
+
+		return sqlSession.selectOne("manager11.tableMonthC3");
+	}
+
+	// 테이블 전전월 판매금액
+	public int tableMonthM3() {
+
+		return sqlSession.selectOne("manager11.tableMonthM3");
+	}
+
+	// 옷장 당월 판매수
+	public int hangerMonthC() {
+		
+		return sqlSession.selectOne("manager11.hangerMonthC");
+	}
+
+	// 옷장 당월 판매금액
+	public int hangerMonthM() {
+		
+		return sqlSession.selectOne("manager11.hangerMonthM");
+	}
+
+	// 옷장 전원 판매수
+	public int hangerMonthC2() {
+		
+		return sqlSession.selectOne("manager11.hangerMonthC2");
+	}
+
+	// 옷장 전원 판매금액
+	public int hangerMonthM2() {
+		
+		return sqlSession.selectOne("manager11.hangerMonthM2");
+	}
+
+	// 옷장 전전월 판매수
+	public int hangerMonthC3() {
+
+		return sqlSession.selectOne("manager11.hangerMonthC3");
+	}
+
+	// 옷장 전전월 판매금액
+	public int hangerMonthM3() {
+		
+		return sqlSession.selectOne("manager11.hangerMonthM3");
 	}
 }

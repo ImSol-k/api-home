@@ -18,15 +18,10 @@ public class MainDao {
 	// 리스트 가져오기
 	public List<MainVo> list(Map<String,Object> listMap) {
 		List<MainVo> list = sqlSession.selectList("ssmain.list",listMap);
-//		System.out.println(list);
 		return list;
 	}
 	
-	//
-	public List<MainVo> listNoCategory() {
-		List<MainVo> list = sqlSession.selectList("ssmain.listNoCategory");
-		return list;
-	}
+	
 	public List<MainVo> listCategory(String keyword) {
 		List<MainVo> list = sqlSession.selectList("ssmain.listCategory",keyword);
 		return list;

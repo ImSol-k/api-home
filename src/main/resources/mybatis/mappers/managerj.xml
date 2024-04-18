@@ -11,7 +11,8 @@
 		price,
 		nick_name nickName,
 		color,
-		main_img mainImage,
+		main_img
+		mainImage,
 		state
 		from orderlist, colors, product, orders, users
 		where
@@ -35,7 +36,8 @@
 		price,
 		nick_name nickName,
 		color,
-		main_img mainImage,
+		main_img
+		mainImage,
 		state
 		from orderlist, colors, product, orders, users
 		where
@@ -145,5 +147,387 @@
 		orderlist.product_no
 		and (category = '옷장' or category = '행거' or
 		category = '붙박이장')
+	</select>
+
+	<select id="todaybed" resultType="int">
+		select if(sum(count) is null,
+		0, sum(count))
+		from product, orderlist, orders
+		where product.product_no
+		= orderlist.product_no
+		and orderlist.order_no = orders.order_no
+		and
+		(category = '침대' or category = '매트리스' or category = '침대 프레임')
+		and
+		orders.order_date = date(now())
+	</select>
+
+	<select id="todayshopa" resultType="int">
+		select if(sum(count) is null,
+		0, sum(count))
+		from product, orderlist, orders
+		where product.product_no
+		= orderlist.product_no
+		and orderlist.order_no = orders.order_no
+		and
+		(category = '일반 쇼파' or category = '좌식 쇼파' or category = '1인용 쇼파')
+		and
+		orders.order_date = date(now())
+	</select>
+
+	<select id="todaytable" resultType="int">
+		select if(sum(count) is null,
+		0, sum(count))
+		from product, orderlist, orders
+		where product.product_no
+		= orderlist.product_no
+		and orderlist.order_no = orders.order_no
+		and
+		(category = '식탁' or category = '사이드 테이블')
+		and orders.order_date =
+		date(now())
+	</select>
+
+	<select id="todayhanger" resultType="int">
+		select if(sum(count) is
+		null, 0, sum(count))
+		from product, orderlist, orders
+		where
+		product.product_no = orderlist.product_no
+		and orderlist.order_no =
+		orders.order_no
+		and (category = '옷장' or category = '행거' or category =
+		'붙박이장')
+		and orders.order_date = date(now())
+	</select>
+
+	<select id="bedMonthC" resultType="int">
+		select if(sum(count) is null,
+		0, sum(count))
+		from product, orderlist, orders
+		where product.product_no
+		= orderlist.product_no
+		and orderlist.order_no = orders.order_no
+		and
+		(category = '침대' or category = '매트리스' or category = '침대 프레임')
+		and
+		order_date like (SELECT DATE_FORMAT(NOW(), '%Y-%m%'))
+	</select>
+
+	<select id="bedMonthM" resultType="int">
+		select if(sum(price*count) is
+		null, 0, sum(price*count))
+		from product, orderlist, orders
+		where
+		product.product_no = orderlist.product_no
+		and orderlist.order_no =
+		orders.order_no
+		and (category = '침대' or category = '매트리스' or category =
+		'침대 프레임')
+		and order_date like (SELECT DATE_FORMAT(NOW(), '%Y-%m%'))
+	</select>
+
+	<select id="bedMonthC2" resultType="int">
+		select if(sum(count) is null,
+		0, sum(count))
+		from product, orderlist, orders
+		where product.product_no
+		= orderlist.product_no
+		and orderlist.order_no = orders.order_no
+		and
+		(category = '침대' or category = '매트리스' or category = '침대 프레임')
+		and
+		order_date like (SELECT date_format(date(DATE_SUB(date(now()),
+		INTERVAL 1 MONTH)), '%Y-%m%'))
+	</select>
+
+	<select id="bedMonthM2" resultType="int">
+		select if(sum(price*count) is
+		null, 0, sum(price*count))
+		from product, orderlist, orders
+		where
+		product.product_no = orderlist.product_no
+		and orderlist.order_no =
+		orders.order_no
+		and (category = '침대' or category = '매트리스' or category =
+		'침대 프레임')
+		and order_date like (SELECT
+		date_format(date(DATE_SUB(date(now()),
+		INTERVAL 1 MONTH)), '%Y-%m%'))
+	</select>
+
+	<select id="bedMonthC3" resultType="int">
+		select if(sum(count) is null,
+		0, sum(count))
+		from product, orderlist, orders
+		where product.product_no
+		= orderlist.product_no
+		and orderlist.order_no = orders.order_no
+		and
+		(category = '침대' or category = '매트리스' or category = '침대 프레임')
+		and
+		order_date like (SELECT date_format(date(DATE_SUB(date(now()),
+		INTERVAL 2 MONTH)), '%Y-%m%'))
+	</select>
+
+	<select id="bedMonthM3" resultType="int">
+		select if(sum(price*count) is
+		null, 0, sum(price*count))
+		from product, orderlist, orders
+		where
+		product.product_no = orderlist.product_no
+		and orderlist.order_no =
+		orders.order_no
+		and (category = '침대' or category = '매트리스' or category =
+		'침대 프레임')
+		and order_date like (SELECT
+		date_format(date(DATE_SUB(date(now()),
+		INTERVAL 2 MONTH)), '%Y-%m%'))
+	</select>
+
+	<select id="shopaMonthC" resultType="int">
+		select if(sum(count) is
+		null, 0, sum(count))
+		from product, orderlist, orders
+		where
+		product.product_no = orderlist.product_no
+		and orderlist.order_no =
+		orders.order_no
+		and (category = '일반 쇼파' or category = '좌식 쇼파' or
+		category = '1인용 쇼파')
+		and order_date like (SELECT DATE_FORMAT(NOW(),
+		'%Y-%m%'))
+	</select>
+
+	<select id="shopaMonthM" resultType="int">
+		select if(sum(price*count)
+		is null, 0, sum(price*count))
+		from product, orderlist, orders
+		where
+		product.product_no = orderlist.product_no
+		and orderlist.order_no =
+		orders.order_no
+		and (category = '일반 쇼파' or category = '좌식 쇼파' or
+		category = '1인용 쇼파')
+		and order_date like (SELECT DATE_FORMAT(NOW(),
+		'%Y-%m%'))
+	</select>
+
+	<select id="shopaMonthC2" resultType="int">
+		select if(sum(count) is
+		null, 0, sum(count))
+		from product, orderlist, orders
+		where
+		product.product_no = orderlist.product_no
+		and orderlist.order_no =
+		orders.order_no
+		and (category = '일반 쇼파' or category = '좌식 쇼파' or
+		category = '1인용 쇼파')
+		and order_date like (SELECT
+		date_format(date(DATE_SUB(date(now()),
+		INTERVAL 1 MONTH)), '%Y-%m%'))
+	</select>
+
+	<select id="shopaMonthM2" resultType="int">
+		select if(sum(price*count)
+		is null, 0, sum(price*count))
+		from product, orderlist, orders
+		where
+		product.product_no = orderlist.product_no
+		and orderlist.order_no =
+		orders.order_no
+		and (category = '일반 쇼파' or category = '좌식 쇼파' or
+		category = '1인용 쇼파')
+		and order_date like (SELECT
+		date_format(date(DATE_SUB(date(now()),
+		INTERVAL 1 MONTH)), '%Y-%m%'))
+	</select>
+
+	<select id="shopaMonthC3" resultType="int">
+		select if(sum(count) is
+		null, 0, sum(count))
+		from product, orderlist, orders
+		where
+		product.product_no = orderlist.product_no
+		and orderlist.order_no =
+		orders.order_no
+		and (category = '일반 쇼파' or category = '좌식 쇼파' or
+		category = '1인용 쇼파')
+		and order_date like (SELECT
+		date_format(date(DATE_SUB(date(now()),
+		INTERVAL 2 MONTH)), '%Y-%m%'))
+	</select>
+
+	<select id="shopaMonthM3" resultType="int">
+		select if(sum(price*count)
+		is null, 0, sum(price*count))
+		from product, orderlist, orders
+		where
+		product.product_no = orderlist.product_no
+		and orderlist.order_no =
+		orders.order_no
+		and (category = '일반 쇼파' or category = '좌식 쇼파' or
+		category = '1인용 쇼파')
+		and order_date like (SELECT
+		date_format(date(DATE_SUB(date(now()),
+		INTERVAL 2 MONTH)), '%Y-%m%'))
+	</select>
+
+	<select id="tableMonthC" resultType="int">
+		select if(sum(count) is
+		null, 0, sum(count))
+		from product, orderlist, orders
+		where
+		product.product_no = orderlist.product_no
+		and orderlist.order_no =
+		orders.order_no
+		and (category = '식탁' or category = '사이드 테이블')
+		and
+		order_date like (SELECT DATE_FORMAT(NOW(), '%Y-%m%'))
+	</select>
+
+	<select id="tableMonthM" resultType="int">
+		select if(sum(price*count)
+		is null, 0, sum(price*count))
+		from product, orderlist, orders
+		where
+		product.product_no = orderlist.product_no
+		and orderlist.order_no =
+		orders.order_no
+		and (category = '식탁' or category = '사이드 테이블')
+		and
+		order_date like (SELECT DATE_FORMAT(NOW(), '%Y-%m%'))
+	</select>
+
+	<select id="tableMonthC2" resultType="int">
+		select if(sum(count) is
+		null, 0, sum(count))
+		from product, orderlist, orders
+		where
+		product.product_no = orderlist.product_no
+		and orderlist.order_no =
+		orders.order_no
+		and (category = '식탁' or category = '사이드 테이블')
+		and
+		order_date like (SELECT date_format(date(DATE_SUB(date(now()),
+		INTERVAL 1 MONTH)), '%Y-%m%'))
+	</select>
+
+	<select id="tableMonthM2" resultType="int">
+		select if(sum(price*count)
+		is null, 0, sum(price*count))
+		from product, orderlist, orders
+		where
+		product.product_no = orderlist.product_no
+		and orderlist.order_no =
+		orders.order_no
+		and (category = '식탁' or category = '사이드 테이블')
+		and
+		order_date like (SELECT date_format(date(DATE_SUB(date(now()),
+		INTERVAL 1 MONTH)), '%Y-%m%'))
+	</select>
+
+	<select id="tableMonthC3" resultType="int">
+		select if(sum(count) is
+		null, 0, sum(count))
+		from product, orderlist, orders
+		where
+		product.product_no = orderlist.product_no
+		and orderlist.order_no =
+		orders.order_no
+		and (category = '식탁' or category = '사이드 테이블')
+		and
+		order_date like (SELECT date_format(date(DATE_SUB(date(now()),
+		INTERVAL 2 MONTH)), '%Y-%m%'))
+	</select>
+
+	<select id="tableMonthM3" resultType="int">
+		select if(sum(price*count)
+		is null, 0, sum(price*count))
+		from product, orderlist, orders
+		where
+		product.product_no = orderlist.product_no
+		and orderlist.order_no =
+		orders.order_no
+		and (category = '식탁' or category = '사이드 테이블')
+		and
+		order_date like (SELECT date_format(date(DATE_SUB(date(now()),
+		INTERVAL 2 MONTH)), '%Y-%m%'))
+	</select>
+
+	<select id="hangerMonthC" resultType="int">
+		select if(sum(count) is
+		null, 0, sum(count))
+		from product, orderlist, orders
+		where
+		product.product_no = orderlist.product_no
+		and orderlist.order_no =
+		orders.order_no
+		and (category = '옷장' or category = '행거' or category =
+		'붙박이장')
+		and order_date like (SELECT DATE_FORMAT(NOW(), '%Y-%m%'))
+	</select>
+
+	<select id="hangerMonthM" resultType="int">
+		select if(sum(price*count)
+		is null, 0, sum(price*count))
+		from product, orderlist, orders
+		where
+		product.product_no = orderlist.product_no
+		and orderlist.order_no =
+		orders.order_no
+		and (category = '옷장' or category = '행거' or category =
+		'붙박이장')
+		and order_date like (SELECT DATE_FORMAT(NOW(), '%Y-%m%'))
+	</select>
+
+	<select id="hangerMonthC2" resultType="int">
+		select if(sum(count) is
+		null, 0, sum(count))
+		from product, orderlist, orders
+		where
+		product.product_no = orderlist.product_no
+		and orderlist.order_no =
+		orders.order_no
+		and (category = '옷장' or category = '행거' or category =
+		'붙박이장')
+		and order_date like (SELECT
+		date_format(date(DATE_SUB(date(now()),
+		INTERVAL 1 MONTH)), '%Y-%m%'))
+	</select>
+
+	<select id="hangerMonthM2" resultType="int">
+		select if(sum(price*count) is null, 0, sum(price*count))
+		from product, orderlist, orders
+		where product.product_no = orderlist.product_no
+		and orderlist.order_no = orders.order_no
+		and (category = '옷장' or category = '행거' or category = '붙박이장')
+		and order_date like (SELECT date_format(date(DATE_SUB(date(now()),
+		INTERVAL 1 MONTH)), '%Y-%m%'))
+	</select>
+	
+	<select id="hangerMonthC3" resultType="int">
+		select if(sum(count) is
+		null, 0, sum(count))
+		from product, orderlist, orders
+		where
+		product.product_no = orderlist.product_no
+		and orderlist.order_no =
+		orders.order_no
+		and (category = '옷장' or category = '행거' or category =
+		'붙박이장')
+		and order_date like (SELECT
+		date_format(date(DATE_SUB(date(now()),
+		INTERVAL 2 MONTH)), '%Y-%m%'))
+	</select>
+
+	<select id="hangerMonthM3" resultType="int">
+		select if(sum(price*count) is null, 0, sum(price*count))
+		from product, orderlist, orders
+		where product.product_no = orderlist.product_no
+		and orderlist.order_no = orders.order_no
+		and (category = '옷장' or category = '행거' or category = '붙박이장')
+		and order_date like (SELECT date_format(date(DATE_SUB(date(now()),
+		INTERVAL 2 MONTH)), '%Y-%m%'))
 	</select>
 </mapper>
