@@ -29,16 +29,6 @@ public class MainController {
 		}
 	}
 	
-	@GetMapping("/home/main/nocategory")
-	public JsonResult noCategory() {
-		List<MainVo> list = mainService.exeNoCategory();
-		if(list != null) {
-			return JsonResult.success(list);
-		} else {
-			return JsonResult.fail("실패");
-		}
-	}
-	
 	@GetMapping("/home/main/category")
 	public JsonResult category(@RequestParam(value="keyword") String keyword) {
 		List<MainVo> list = mainService.exeCatogery(keyword);
@@ -50,12 +40,7 @@ public class MainController {
 			return JsonResult.fail("리스트를 불러올수 없습니다");
 		}
 	}
-	@GetMapping("home/main/sorttype")
-	public void sortType(@RequestParam(value="word") String word , @RequestParam(value="sortType") String sortType) {
-		System.out.println("sort");
-		System.out.println(word);
-		System.out.println(sortType);
-	}
+	
 	
 
 }

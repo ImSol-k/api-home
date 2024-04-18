@@ -40,15 +40,6 @@ public class MainService {
 		}		
 	}
 	
-	// 카테고리 기본
-	public List<MainVo> exeNoCategory() {
-		List<MainVo> list = mainDao.listNoCategory();
-		if (!list.isEmpty()) {
-			return list;
-		} else {
-			return null;
-		}		
-	}
 	
 	public List<MainVo> exeCatogery(String keyword) {
 		List<MainVo> list = mainDao.listCategory(keyword);
