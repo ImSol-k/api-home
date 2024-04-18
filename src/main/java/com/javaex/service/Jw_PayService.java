@@ -18,10 +18,6 @@ public class Jw_PayService {
 	@Autowired
 	private Jw_PayDao jw_PayDao;
 
-	public List<SolCartVo> getCartItems(int userNo) {
-		System.out.println("Jw_PayService.getCartItems");
-		return jw_PayDao.getCartItems(userNo);
-	}
 
 	public int execreateOrder(OrderInfo_Vo orderInfo_Vo) {
 		System.out.println("Jw_PayService.execreateOrder()");

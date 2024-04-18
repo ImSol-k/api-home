@@ -21,17 +21,6 @@ public class Jw_PayController {
 	@Autowired
 	private Jw_PayService jw_PayService;
 
-	@PostMapping("/getCartItems") // 장바구니 항목을 가져오는 메서드 추가
-	public JsonResult getCartItems(@RequestBody SolCartVo solCartVo) {
-		System.out.println("Jw_PayController.getCartItems");
-
-		// 장바구니 항목 가져오기
-		List<SolCartVo> cartItems = jw_PayService.getCartItems(solCartVo.getUserNo());
-
-		System.out.println(cartItems);
-		
-		return JsonResult.success(cartItems);
-	}
 
 	@PostMapping("/createOrder")
 	public JsonResult createOrder(@RequestBody OrderInfo_Vo orderInfo_Vo) {
