@@ -8,18 +8,25 @@ public class OrderDetail_Vo {
     private int productNo;
     private int count;
     private int colorNo;
+    private String color;
     
     public OrderDetail_Vo() {
     
     }
     
-    public OrderDetail_Vo(int orderlistNo,int orderNo, int productNo, int count, int colorNo) {
-    	this.orderlistNo = orderlistNo;
-        this.orderNo = orderNo;
-        this.productNo = productNo;
-        this.count = count;
-        this.colorNo = colorNo;
-    }
+    
+
+	public OrderDetail_Vo(int orderlistNo, int orderNo, int productNo, int count, int colorNo, String color) {
+		super();
+		this.orderlistNo = orderlistNo;
+		this.orderNo = orderNo;
+		this.productNo = productNo;
+		this.count = count;
+		this.colorNo = colorNo;
+		this.color = color;
+	}
+
+
 
 	public int getOrderlistNo() {
 		return orderlistNo;
@@ -60,12 +67,29 @@ public class OrderDetail_Vo {
 	public void setColorNo(int colorNo) {
 		this.colorNo = colorNo;
 	}
+	
+
+	public String getColor() {
+		return color;
+	}
+
+
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+
 
 	@Override
 	public String toString() {
 		return "OrderDetail_Vo [orderlistNo=" + orderlistNo + ", orderNo=" + orderNo + ", productNo=" + productNo
-				+ ", count=" + count + ", colorNo=" + colorNo + "]";
+				+ ", count=" + count + ", colorNo=" + colorNo + ", color=" + color + "]";
 	}
+
+
+
+	
     
    
 }

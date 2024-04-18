@@ -81,11 +81,8 @@
 	<!-- 주문 상세 정보 생성 -->
 	<insert id="createOrderDetail" parameterType="com.javaex.vo.OrderDetail_Vo">
     <![CDATA[
-        INSERT INTO orderlist (order_no orderNo, 
-                               product_no productNo, 
-                               count, 
-                               color_no colorNo)
-        VALUES (#{orderNo}, #{productNo}, #{count}, #{colorNo});
+        INSERT INTO orderlist 
+        VALUES (null, #{orderNo}, #{productNo}, #{count}, (select no from colors where color = #{color}));
     ]]>
 	</insert>
 
