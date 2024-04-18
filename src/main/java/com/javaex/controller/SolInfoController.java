@@ -38,7 +38,7 @@ public class SolInfoController {
 	@PostMapping("add")
 	public JsonResult addCart(@RequestBody List<SolCartVo> cartList) {
 		System.out.println("SolInfoController.addCart");
-		System.out.println(cartList.size());
+		System.out.println(cartList);
 		if (cartList.size() > 0) {
 			infoService.exeCartAdd(cartList);
 			return JsonResult.success(cartList.size());

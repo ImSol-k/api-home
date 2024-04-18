@@ -53,9 +53,9 @@
 	<insert id="insertCart" parameterType="SolCartVo">
 	<![CDATA[
 		insert carts values
-		(null, (select product_no from product
+		(null, (select product_no productNo from product
 				where product_name = #{product}), 
-	    	   (select user_no from users
+	    	   (select user_no userNo from users
 				where id = #{user}), 
 		   	   (select no from colors
 	     	where color = #{color}), #{count})
