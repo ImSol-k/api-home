@@ -40,7 +40,7 @@
  		select	p.product_no productNo,
 				p.main_img mainImg, 
 		        p.category,
-		        p.product_name ,
+		        p.product_name productName,
 		        r.star star,
 		        p.price
 		from product p 
@@ -53,5 +53,21 @@
 		order by p.product_no desc
  		]]>
  	</select>
+ 	
+ 	<select id="hitlist" resultType="com.javaex.vo.MainVo">
+ 		<![CDATA[
+ 			select	p.product_no productNo,
+					p.product_name productName, 
+			        count(*) count
+			from product p, reviews r
+			where p.product_no = r.product_no
+			group by r.product_no
+			order by count desc
+			limit 0, 10
+ 		]]>
+ 	
+ 	</select>
+ 	
+ 	
    
 </mapper>

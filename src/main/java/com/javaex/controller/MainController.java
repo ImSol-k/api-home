@@ -28,7 +28,7 @@ public class MainController {
 			return JsonResult.fail("더 이상 불러올 데이터가 없습니다.");
 		}
 	}
-	
+	// 카테고리
 	@GetMapping("/home/main/category")
 	public JsonResult category(@RequestParam(value="keyword") String keyword) {
 		List<MainVo> list = mainService.exeCatogery(keyword);
@@ -40,7 +40,18 @@ public class MainController {
 			return JsonResult.fail("리스트를 불러올수 없습니다");
 		}
 	}
-	
-	
+	// 인기검색어
+	@GetMapping("/home/main/hits")
+	public JsonResult hitList() {
+		List<MainVo> list = mainService.exeHitList();
+
+		if(list != null) {
+			return JsonResult.success(list);
+		} else {
+			return JsonResult.fail("가져올 데이터가 업습니다.");
+		}
+		
+		
+	}
 
 }
