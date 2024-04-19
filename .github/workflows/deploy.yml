@@ -54,7 +54,7 @@ jobs:
             sudo docker stop home || true
             sudo docker rm home || true
             sudo docker run -d \
-              --name attach \
+              --name home \
               -p 9090:9090 \
               -v /home/ec2-user/upload:/app/upload \
               tkatns20/home:latest
