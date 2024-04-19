@@ -90,8 +90,6 @@ public class ManagerServiceY {
 	public List<String> exeInsert02(ManagerVoY managerVoY) {
 		System.out.println("ManagerServiceY.exeInsert02()");
 
-		// 파일저장디렉토리
-		String saveDir = ".\\uploadImages\\";
 
 		List<MultipartFile> files = managerVoY.getContentFiles(); // 프로필 파일 정보 가져오기
 
@@ -111,14 +109,30 @@ public class ManagerServiceY {
 			// 저장파일명(겹치지 않아야 된다)
 			String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
 			System.out.println(saveName);
+			
+			String saveDir;
+			String filePath;
+			String osName = System.getProperty("os.name").toLowerCase();
+			if (osName.contains("linux")) {
+				System.out.println("리눅스");
+				// 파일저장디렉토리
+				saveDir = "/app/upload/"; // Linux 경로. username을 실제 사용자 이름으로 변경하세요.
+				filePath = saveDir + "/" + saveName;
 
-			// 파일사이즈
-			long fileSize = file.getSize();
-			System.out.println(fileSize);
-
-			// 파일전체경로
-			String filePath = saveDir + "\\" + saveName;
-			System.out.println(filePath);
+			} else {
+				System.out.println("윈도우");
+				// 파일저장디렉토리
+				saveDir = ".\\uploadImages\\";
+				filePath = saveDir + "\\" + saveName;
+			}
+//
+//			// 파일사이즈
+//			long fileSize = file.getSize();
+//			System.out.println(fileSize);
+//
+//			// 파일전체경로
+//			String filePath = saveDir + "\\" + saveName;
+//			System.out.println(filePath);
 
 			// Dao만들기 --> DB저장 과제
 			savedFileNames.add(saveName);
