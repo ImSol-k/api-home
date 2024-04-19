@@ -581,5 +581,6 @@
 		order_date orderDate,
 		state
 		from orders
+		where state = 'ing'
 	</select>
 </mapper>

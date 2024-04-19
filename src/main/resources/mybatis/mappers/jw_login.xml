@@ -70,7 +70,7 @@
 	<insert id="createOrder" parameterType="com.javaex.vo.OrderInfo_Vo">
     <![CDATA[
         INSERT INTO orders
-        VALUES (NULL, #{userNo}, NOW(), '주문완료');
+        VALUES (NULL, #{userNo}, NOW(), 'ing');
     ]]>
 		<selectKey keyProperty="orderNo" resultType="int" order="AFTER">
 			SELECT LAST_INSERT_ID() orderNo ;
