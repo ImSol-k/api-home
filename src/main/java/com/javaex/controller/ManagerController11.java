@@ -22,6 +22,7 @@ public class ManagerController11 {
 		return ms.list();
 	}
 	
+	
 	@PostMapping("/home/manager/state")
 	public void update(@RequestBody int no) {
 		
