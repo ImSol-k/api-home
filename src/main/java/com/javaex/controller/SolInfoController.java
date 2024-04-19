@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -77,6 +78,18 @@ public class SolInfoController {
 		}
 	}
 	
+	//구매확인
+	@GetMapping("isPurchase/{no}")
+	public JsonResult isPurchase(@PathVariable("no") int num, @RequestParam int productNo) {
+		System.out.println("SolInfoController.isPurchase");
+		boolean yes = infoService.exeIsPurchase(num, productNo);
+		if(yes) {
+			return JsonResult.success(yes);
+		} else {
+			return JsonResult.fail("구매목록없음");
+		}
+	}
+	
 	@PostMapping("review")
 	public JsonResult reviewWrite(@RequestParam(name = "file", required = false) MultipartFile file, 
 								  @RequestParam("star") int star, 
@@ -137,6 +150,13 @@ public class SolInfoController {
 		
 		infoService.exeCartDelete(delMap);
 		
+		return JsonResult.success("장바구니 삭제");
+	}
+	
+	@DeleteMapping("paydelete")
+	public JsonResult payCartList(@RequestBody List<SolCartVo> deleteList) {
+		System.out.println("SolInfoController.payCartList");
+		infoService.exePayendDelete(deleteList);
 		return JsonResult.success("장바구니 삭제");
 	}
 

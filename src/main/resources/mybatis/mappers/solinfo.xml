@@ -32,6 +32,17 @@
 	]]>
 	</select>
 	
+	<!-- 구입확인 -->
+	<select id="isPurchase" resultType="int">
+	<![CDATA[
+		select o.user_no
+		from users u, orderlist l, orders o
+		where o.order_no = l.order_no
+		and u.user_no = o.user_no
+		and product_no = #{productNo}
+	]]>
+	</select>
+	
 	<!-- 리뷰추가 -->
 	<insert id="reviewInsert" parameterType="reviewVo">
 	<![CDATA[
@@ -80,6 +91,13 @@
 		delete from carts 
 		where cart_no = #{cart}
 		and user_no = #{userNo}
+	]]>
+	</delete>
+	
+	<delete id="payendCartDelete" parameterType="SolCartVo">
+	<![CDATA[
+		delete from carts 
+		where product_no = #{productNo} and user_no = #{userNo}
 	]]>
 	</delete>
 	

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -42,8 +43,8 @@ public class SolInfoService {
 		productVo.setImgList(imgList);
 		return productVo;
 	}
-	
-	public List<String> exeColor(){
+
+	public List<String> exeColor() {
 		System.out.println("SolInfoService.exeCartAdd()");
 		List<String> colorList = infoDao.selectColor();
 		return colorList;
@@ -56,6 +57,19 @@ public class SolInfoService {
 //		int page = (int)Math.ceil((double)reviewList.size() / 5);
 //		System.out.println(page);
 		return reviewList;
+	}
+
+	// 구입확인
+	public boolean exeIsPurchase(int num, int proNo) {
+		System.out.println("SolInfoService.exeIsPurchase");
+		List<Integer> userList = infoDao.isPurchase(proNo);
+		
+		for (int i = 0; i < userList.size(); i++) {
+			if(num == userList.get(i)) {
+				return true;
+			} 
+		}
+		return false;
 	}
 
 	// 리뷰작성
@@ -85,7 +99,8 @@ public class SolInfoService {
 		}
 		return reviewVo;
 	}
-	//리뷰삭제
+
+	// 리뷰삭제
 	public int exeDeleteReview(int no) {
 		System.out.println("SolInfoService.exeDeleteReview()");
 		infoDao.delelteReview(no);
@@ -98,16 +113,27 @@ public class SolInfoService {
 		List<SolCartVo> cartList = infoDao.selectCart(userNo);
 		return cartList;
 	}
-	//카트 업데이트
+
+	// 카트 업데이트
 	public int exeCartUpdate(SolCartVo cartVo) {
 		System.out.println("SolInfoService.exeCartUpdate");
 		int count = infoDao.updateCart(cartVo);
 		return count;
 	}
-	//카트삭제
+
+	// 카트삭제
 	public int exeCartDelete(Map<String, Object> delMap) {
 		System.out.println("SolInfoService.exeCartDelete()");
 		infoDao.deleteCart(delMap);
+		return 0;
+	}
+
+	// 결제완료 장바구니 삭제
+	public int exePayendDelete(List<SolCartVo> deleteList) {
+		System.out.println("SolInfoService.exePayendDelete()");
+		for (int i = 0; i < deleteList.size(); i++) {
+			infoDao.payendDeleteCart(deleteList.get(i));
+		}
 		return 0;
 	}
 
