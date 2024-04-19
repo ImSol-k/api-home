@@ -55,7 +55,6 @@ public class SolInfoService {
 		System.out.println("SolInfoService.exeGetReview()");
 		List<SolReviewVo> reviewList = infoDao.selectReview(no);
 //		int page = (int)Math.ceil((double)reviewList.size() / 5);
-//		System.out.println(page);
 		return reviewList;
 	}
 
