@@ -23,6 +23,9 @@ public class Jw_MypageDao {
 
     public List<OrderInfo_Vo> getOrders(int userNo) { // OrderInfo 클래스를 OrderInfo_Vo로 변경
         // MyBatis를 사용하여 데이터베이스로부터 주문 내역을 가져옴
-        return sqlSession.selectList("jw.getOrders", userNo);
+    	
+    	List<OrderInfo_Vo> list = sqlSession.selectList("jw.getOrders", userNo);
+    	System.out.println(userNo);
+    	return list;
     }
 }

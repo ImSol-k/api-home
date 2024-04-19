@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,15 +20,15 @@ public class Jw_MypageController {
     @Autowired
     private Jw_MypageService mypageService;
 
-    @GetMapping("/userinfo")
-    public Jw_Vo getUserInfo(@RequestParam("userNo") int userNo) {
+    @GetMapping("/userinfo/{no}")
+    public Jw_Vo getUserInfo(@PathVariable("no") int userNo) {
     	System.out.println("Jw_MypageController");
         return mypageService.getUserInfo(userNo);
    
     }
 
-    @GetMapping("/orders")
-    public List<OrderInfo_Vo> getOrders(@RequestParam("userNo") int userNo) {
+    @GetMapping("/orders/{no}")
+    public List<OrderInfo_Vo> getOrders(@PathVariable("no") int userNo) {
     	System.out.println("Jw_MypageController");
         return mypageService.getOrders(userNo);
     }

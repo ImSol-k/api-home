@@ -94,6 +94,7 @@ public class SolInfoDao {
 	public int deleteCart(Map<String, Object> delMap) {
 		System.out.println("SolInfoDao.deleteCart");
 		sqlSession.delete("solinfo.cartDelete", delMap);
+		System.out.println(delMap);
 		return 0;
 	}
 

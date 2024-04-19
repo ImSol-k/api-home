@@ -22,16 +22,6 @@ public class Jw_PayService {
 
 	    // 주문 생성 및 주문 번호 반환
 	    int count = jw_PayDao.createOrder(orderInfo_Vo);
-
-	    // 주문 상세 정보 생성
-//	    for (OrderDetail_Vo orderDetail : orderInfo_Vo.getOrderList()) {
-//	        // 주문 번호 설정
-//	        orderDetail.setOrderNo(orderInfo_Vo.getOrderNo());
-//	        System.out.println(orderDetail);
-//
-//	        // 주문 상세 정보 생성
-//	        jw_PayDao.createOrderDetail(orderDetail);
-//	    }
 	    
 	    for(int i = 0; i < orderInfo_Vo.getOrderList().size(); i++) {
 	    	orderInfo_Vo.getOrderList().get(i).setOrderNo(orderInfo_Vo.getOrderNo());

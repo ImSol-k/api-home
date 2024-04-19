@@ -99,7 +99,7 @@ public class SolInfoController {
 								  HttpServletRequest request) {
 		System.out.println("SolInfoController.reviewWrite"+userNo);
 		System.out.println(file+"/"+star+"/"+content);
-		if(JwtUtil.getNoFromHeader(request) > 0) {
+		if(JwtUtil.getNoFromHeader(request) != 0) {
 			SolReviewVo reviewVo = infoService.exeSetReview(file, new SolReviewVo(star, content, userNo, pNo));
 			return JsonResult.success(reviewVo);
 		} else {

@@ -43,7 +43,7 @@
 	</select>
 
 	<!-- 주문 내역 조회 -->
-	<select id="getOrders" resultType="com.javaex.vo.OrderInfo_Vo" parameterType="com.javaex.vo.Jw_Vo">
+	<select id="getOrders" resultType="com.javaex.vo.OrderInfo_Vo" parameterType="int">
     <![CDATA[
         SELECT 
             orders.order_no orderNo, 
