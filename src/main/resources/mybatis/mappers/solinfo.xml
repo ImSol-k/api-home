@@ -71,7 +71,7 @@
 	<!-- 유저 장바구니 불러오기 -->
 	<select id="userCartSelect" parameterType="int" resultType="SolCartVo">
 	<![CDATA[
-		select cart_no cart, u.id user, p.product_name productName, p.product_no productNo, r.color, count, p.price, main_img mainImg
+		select cart_no cart, u.id user, p.product_name product, p.product_no productNo, r.color, count, p.price, main_img mainImg
 		from carts c, product p, users u, colors r
 		where c.product_no = p.product_no
 		and c.user_no = u.user_no
