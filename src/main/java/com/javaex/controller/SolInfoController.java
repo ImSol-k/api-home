@@ -84,7 +84,7 @@ public class SolInfoController {
 		System.out.println("SolInfoController.isPurchase");
 		boolean yes = infoService.exeIsPurchase(num, productNo);
 		if(yes) {
-			return JsonResult.success(yes);
+			return JsonResult.success(yes);  
 		} else {
 			return JsonResult.fail("구매목록없음");
 		}
