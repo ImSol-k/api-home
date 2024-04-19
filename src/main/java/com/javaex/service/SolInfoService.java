@@ -74,14 +74,27 @@ public class SolInfoService {
 	public SolReviewVo exeSetReview(MultipartFile file, SolReviewVo reviewVo) {
 		System.out.println("SolInfoService.exeSetReview()");
 
-		String saveDir = ".\\uploadImages\\";
-
 		// 파일 정보수집
 		String orgName = file.getOriginalFilename();
 		String exeName = orgName.substring(orgName.lastIndexOf("."));
 		String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exeName;
 //		System.out.println("saveName: " + saveName);
-		String filePath = saveDir + "\\" + saveName;
+		
+		String saveDir;
+		String filePath;
+		String osName = System.getProperty("os.name").toLowerCase();
+		if (osName.contains("linux")) {
+			System.out.println("리눅스");
+			// 파일저장디렉토리
+			saveDir = "/app/upload/"; // Linux 경로. username을 실제 사용자 이름으로 변경하세요.
+			filePath = saveDir + "/" + saveName;
+
+		} else {
+			System.out.println("윈도우");
+			// 파일저장디렉토리
+			saveDir = ".\\uploadImages\\";
+			filePath = saveDir + "\\" + saveName;
+		}
 		reviewVo.setImgName(saveName);
 		System.out.println(reviewVo);
 		int count = infoDao.insertReview(reviewVo);
