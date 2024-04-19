@@ -51,8 +51,8 @@ jobs:
           script: |
             sudo mkdir -p /home/ec2-user/upload
             sudo docker pull tkatns20/home:latest
-            sudo docker stop attach || true
-            sudo docker rm attach || true
+            sudo docker stop home || true
+            sudo docker rm home || true
             sudo docker run -d \
               --name attach \
               -p 9090:9090 \
